@@ -30,35 +30,35 @@ padding:
 tabspaces: 8
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Iosevka
+    family: Fira Code
     # Style can be specified to pick a specific face.
-    style: Regular
+    style: Retina
 
   # The bold font face
   bold:
-    family: Iosevka
+    family: Fira Code
     # Style can be specified to pick a specific face.
-    style: Bold
+    style: Medium
 
   # The italic font face
   italic:
-    family: Iosevka
+    family: Fira Code
     # Style can be specified to pick a specific face.
     style: Italic
 
   # Point size of the font
-  size: 16.0
+  size: 15.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 1.0
+    x: 0.5
     y: 2.0
 
   # Glyph offset determines the locations of the glyphs within their cells with

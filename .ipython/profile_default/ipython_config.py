@@ -184,7 +184,7 @@ c.InteractiveShell.cache_size = 100
 #c.InteractiveShell.color_info = True
 
 ## Set the color scheme (NoColor, Neutral, Linux, or LightBG).
-#  c.InteractiveShell.colors = 'Neutral'
+c.InteractiveShell.colors = 'Linux'
 
 ##
 #c.InteractiveShell.debug = False

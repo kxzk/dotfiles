@@ -51,38 +51,47 @@ Plug 'matze/vim-move'                                               " Easily mov
 Plug 'python-mode/python-mode', { 'for': 'python' }                 " Enhancements for Python
 Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 Plug 'scrooloose/nerdtree'                                          " File tree
-Plug 'itchyny/vim-gitbranch'
+Plug 'itchyny/vim-gitbranch'                                        " Keep track of Git branches
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'BurningEther/iron.nvim', { 'do': ':UpdateRemotePlugins' }     " Repls for various languages
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
 Plug 'junegunn/goyo.vim'                                            " Distraction free writing / coding
-" Plug 'skywind3000/asyncrun.vim'                                     " Asycn shell command runner
+Plug 'junegunn/vim-easy-align'                                      " Easy alignment
+Plug 'mattn/gist-vim'                                               " Vim snippets --> Github gist
+Plug 'mattn/webapi-vim'                                             " Gist-Vim dep, interface to web APIs
 
 " LSP
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language server client
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language server client
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " Nvim - Completion Manager
 Plug 'roxma/nvim-completion-manager'                                " Auto-completion manager
 
 " Language Support
 Plug 'rust-lang/rust.vim'                                           " Enhancements for Rust
-Plug 'Shougo/neco-vim', { 'for': 'vim' }                            " Vim auto-completion + lint
+Plug 'racer-rust/vim-racer'
+Plug 'roxma/nvim-cm-racer'
+
+Plug 'Shougo/neco-vim'
 Plug 'gaalcaras/ncm-R'                                              " R auto-completion
-Plug 'davidhalter/jedi', { 'for': 'python' }                        " Python auto-completion
+Plug 'davidhalter/jedi'
+" Used for support of pythonDocstring coloring
 Plug 'Hyleus/vim-python-syntax'                                     " Enhanced Python syntax
 
 " colorschemes
 Plug 'beigebrucewayne/subtle_solo'
-Plug 'jacoborus/tender.vim'
 
 call plug#end()
 "
 
 
 " << COLORSCHEMES >>
+set background=dark
 
 colorscheme subtle_dark
-" set background=dark
 " }}}
 
 
@@ -109,8 +118,8 @@ set statusline+=\ %F\ %*                                         " Show filename
 set statusline+=\ %m                                             " Show file modification indicator
 set statusline+=%=
 set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
-set statusline+=\ branch(%{gitbranch#name()})                            " Show Git branch
-set statusline+=\ %{strftime('%R',getftime(expand('%')))}\       " Show time
+set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
+" set statusline+=\ %{strftime('%R',getftime(expand('%')))}\       " Show time
 " }}}
 
 
@@ -119,7 +128,7 @@ set statusline+=\ %{strftime('%R',getftime(expand('%')))}\       " Show time
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 1
-let g:netrw_winsize = 25
+let g:netrw_winsize = 20
 let g:netrw_altv = 1
 " }}}
 
@@ -143,13 +152,16 @@ let g:indentLine_color_gui = '#073642'
 
 " << LSP >> {{{
 
-let g:LanguageClient_autoStart = 0
+let g:LanguageClient_autoStart = 1
 
-nnoremap <leader>lcs :LanguageClientStart<CR>
+" Manually start LSP
+" nnoremap <leader>lcs :LanguageClientStart<CR>
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls', '-v'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+    \ 'python': ['pyls', '-v'] }
+
+    " \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+
 
 noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
@@ -160,6 +172,13 @@ noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
 
 let g:cm_complete_popup_delay = 1
 let g:cm_refresh_length = [[1,2],[7,1]]
+" }}}
+
+
+" << GIST >> {{{
+
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
 " }}}
 
 
@@ -183,6 +202,7 @@ nmap rr <Plug>(iron-repeat-cmd)
 
 " << R >> {{{
 
+" Resize R console based on window width
 augroup R_Resize
 	autocmd!
 	autocmd VimResized * let R_rconsole_width = winwidth(0) / 2
@@ -201,9 +221,6 @@ nmap ,p <Plug>RPrintObj
 
 " << PYTHON >> {{{
 
-" python_syntax
-" let g:python_highlight_all = 1
-
 " pymode
 let g:pymode_syntax_all = 1
 let g:pymode_trim_whitespaces = 1
@@ -220,6 +237,9 @@ let g:pymode_virtualenv = 1
 
 " << NERDTREE >> {{{
 
+" Show hidden files ---> Toggle I
+
+" Open NerdTree on start up
 augroup Nerdtree
   autocmd!
   autocmd StdinReadPre * let s:std_in=1               " fire up on start
@@ -229,12 +249,17 @@ augroup Nerdtree
 augroup END
 
 let g:NerdTreeCascadeSingleChildDir= 0
-" let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinPos = 'left'
-" show hidden files -> toggle 'I'
-" let g:NERDTreeShowHidden = 1
 let g:NERDTreeShowBookmarks = 1
 map <leader>nt :NERDTreeToggle<CR>
+" }}}
+
+
+" << EASY ALIGN >> {{{
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 " }}}
 
 
@@ -245,7 +270,7 @@ augroup FileOptions
   " indentation
   " (for comments moving to BOL): https://stackoverflow.com/questions/2063175/comments-go-to-start-of-line-in-the-insert-mode-in-vim
   autocmd Filetype go setlocal nolist noet sts=0 sw=0
-  autocmd Filetype python setlocal sts=4 sw=4 wrap nonumber norelativenumber
+  autocmd Filetype python setlocal sts=4 sw=4 wrap
   " autocmd Filetype r setlocal ts=2 sw=2 sts=2 expandtab
   autocmd Filetype r setlocal ts=2 sw=2
   autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 syntax=javascript
@@ -261,14 +286,14 @@ let g:ale_enabled = 1
 let g:ale_sign_error = '✖︎'
 highlight ALEErrorSign guifg=red ctermfg=red
 let g:ale_sign_warning = '✔︎'
-highlight ALEWarningSign guifg=yellow ctermfg=yellow
+highlight ALEWarningSign guifg=grey ctermfg=grey
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:move_key_modifier = 'C'
+let g:move_key_modifier = 'N'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 " let g:ale_sign_column_always = 1                " ale enabled
 " }}}
@@ -324,10 +349,8 @@ set mouse=a             " enable mouse
 " set title               " window shows file being edited
 set hidden              " buffers exist without windows
 " set numberwidth=4
-" set number              " show line number
-" set relativenumber      " show relative line number
-set nonumber
-set norelativenumber
+set number              " show line number
+set relativenumber      " show relative line number
 set nobackup            " take care of backup files
 set writebackup         " no backup files
 set noswapfile          " no swap files
@@ -350,15 +373,14 @@ set fillchars+=vert:\   " get rid of vert split '|' character
 " << KEY MAPPINGS >> {{{
 
 
+" <TAB> to select from popup menu
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
 " quick subtitutions
 nnoremap <leader>s :%s/
 
 " Goyo toggle
 nnoremap <leader>g :Goyo<CR>
-
-" quick init.vim sourcing
-" <S-s> key binding fucks up line substitution
-" nnoremap <S-s> :source /Users/Kade.Killary/.config/nvim/init.vim<CR>
 
 " Remove search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
@@ -375,14 +397,8 @@ nnoremap <Leader>T :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
 
 " fast saves
 nnoremap <leader>w :w!<CR>
-" save and quit
-" nnoremap <leader>wq :w!<CR>:q!<CR>
 " exit quickly
 nnoremap <leader>q :q!<CR>
-
-" bracket indentation
-" inoremap <C-t> <CR><CR><C-o>k<Tab>
-" inoremap <C-Return> <CR><CR><C-o>k<Tab><Esc>
 
 inoremap jk <esc>   " remap jk to <esc>
 vnoremap jk <esc>   " remap jk to <esc>
@@ -399,12 +415,6 @@ if has ('nvim')
     tnoremap <C-W>l <C-\><C-n><C-w>l<CR>
 endif
 
-" keep window changing consistent
-" nnoremap <S-h> <c-w>h
-" nnoremap <S-k> <c-w>k
-" nnoremap <S-l> <c-w>l
-" nnoremap <S-j> <c-w>j
-
 " list all current buffers
 nnoremap <leader>bb :ls<CR>:b<Space>
 " close buffer
@@ -416,9 +426,6 @@ nnoremap <leader>tn :tabedit<CR>
 
 " save all lines in buffer to separate .txt file
 " nnoremap <leader>sf :g/^/exe ".w".line(".").".txt"<CR>
-
-" tab to get out of auto-complete
-nnoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " ignite Dash search
 nmap <silent> <leader>d <Plug>DashSearch<CR>
