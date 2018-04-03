@@ -15,6 +15,9 @@
 "                 '%o  OOOO"%OOOO%"%OOOOO"OOOOOO"OOO':
 "                      `$"  `OOOO' `O"Y ' `OOOO'  o             .
 "    .                  .     OP"          : o     .
+"
+"                      K A D E     K I L L A R Y
+"                              (c) 2018
 
 
 " << STARTERS >> {{{
@@ -33,7 +36,7 @@ endif
 
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
-set colorcolumn=80
+" set colorcolumn=80
 " }}}
 
 
@@ -72,9 +75,6 @@ Plug 'roxma/nvim-completion-manager'                                " Auto-compl
 
 " Language Support
 Plug 'rust-lang/rust.vim'                                           " Enhancements for Rust
-Plug 'racer-rust/vim-racer'
-Plug 'roxma/nvim-cm-racer'
-
 Plug 'Shougo/neco-vim'
 Plug 'gaalcaras/ncm-R'                                              " R auto-completion
 Plug 'davidhalter/jedi'
@@ -83,15 +83,16 @@ Plug 'Hyleus/vim-python-syntax'                                     " Enhanced P
 
 " colorschemes
 Plug 'beigebrucewayne/subtle_solo'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 "
 
 
 " << COLORSCHEMES >>
-set background=dark
+set background=light
 
-colorscheme subtle_dark
+colorscheme papercolor
 " }}}
 
 
@@ -116,17 +117,16 @@ set laststatus=2
 set statusline=
 set statusline+=\ %F\ %*                                         " Show filename
 set statusline+=\ %m                                             " Show file modification indicator
-set statusline+=%=
+set statusline+=%=                                               " Switch sides
 set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
-" set statusline+=\ %{strftime('%R',getftime(expand('%')))}\       " Show time
 " }}}
 
 
 " << NETRW >> {{{
 
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
+let g:netrw_liststyle = 3                                        " Tree style
+let g:netrw_banner = 0                                           " No banner
 let g:netrw_browse_split = 1
 let g:netrw_winsize = 20
 let g:netrw_altv = 1
@@ -144,9 +144,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 let g:indentLine_char = '¦'
 " subtle_light
-" let g:indentLine_color_gui = '#eee8d5'
+let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-let g:indentLine_color_gui = '#073642'
+" let g:indentLine_color_gui = '#073642'
 " }}}
 
 
@@ -160,6 +160,7 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls', '-v'] }
 
+    " Took out rust beacuase it was max'ing out the CPU
     " \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
 
 
@@ -178,7 +179,7 @@ let g:cm_refresh_length = [[1,2],[7,1]]
 " << GIST >> {{{
 
 let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
+" let g:gist_open_browser_after_post = 1
 " }}}
 
 
@@ -208,9 +209,9 @@ augroup R_Resize
 	autocmd VimResized * let R_rconsole_width = winwidth(0) / 2
 augroup END
 
-let g:Rout_more_colors=1
-let g:rout_follow_colorscheme=1
-let g:R_start_libs = 'base, stats, graphics, grDevices, utils, methods, tidyverse, shiny'
+let g:Rout_more_colors = 1
+let g:rout_follow_colorscheme = 1
+let g:R_start_libs = 'base, stats, graphics, grDevices, utils, methods, tidyverse'
 
 nmap , <Plug>RDSendLine
 vmap , <Plug>RDSendSelection
@@ -355,8 +356,8 @@ set nobackup            " take care of backup files
 set writebackup         " no backup files
 set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
-" set showmode          " what mode
-set fillchars+=vert:\   " get rid of vert split '|' character
+set noshowmode          " what mode
+" set fillchars+=vert:\   " get rid of vert split '|' character
 " set wildmenu            " autocomplete for command menu
 " set wildmode=list:full
 " set wildignorecase
@@ -372,6 +373,8 @@ set fillchars+=vert:\   " get rid of vert split '|' character
 
 " << KEY MAPPINGS >> {{{
 
+" Vim Move <CTRL> binding
+let g:move_key_modifier = 'C'
 
 " <TAB> to select from popup menu
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
