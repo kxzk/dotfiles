@@ -39,12 +39,12 @@ font:
     family: Fira Code
     # Style can be specified to pick a specific face.
     style: Regular
-
+ 
   # The bold font face
   bold:
     family: Fira Code
     # Style can be specified to pick a specific face.
-    style: Medium
+    style: Bold
 
   # The italic font face
   italic:
@@ -80,13 +80,12 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-
-# Colors (Solarized Light)
+# Colors (Solarized Dark)
 colors:
   # Default colors
   primary:
-    background: '0xfdf6e3'
-    foreground: '0x586e75'
+    background: '0x002b36'
+    foreground: '0x839496'
 
   # Normal colors
   normal:
@@ -182,10 +181,10 @@ live_config_reload: true
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
-shell:
-  program: /bin/zsh
-  args:
-    - --login
+# shell:
+  # program: /bin/zsh
+  # args:
+    # - --login
 
 # Key bindings
 #

@@ -36,7 +36,7 @@ endif
 
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
-" set colorcolumn=80
+set colorcolumn=80
 " }}}
 
 
@@ -80,7 +80,7 @@ Plug 'gaalcaras/ncm-R'                                              " R auto-com
 Plug 'davidhalter/jedi'
 " Used for support of pythonDocstring coloring
 Plug 'Hyleus/vim-python-syntax'                                     " Enhanced Python syntax
-Plug 'roxma/ncm-clang'
+" Plug 'roxma/ncm-clang'
 
 " colorschemes
 Plug 'beigebrucewayne/subtle_solo'
@@ -90,9 +90,9 @@ call plug#end()
 
 
 " << COLORSCHEMES >>
-set background=light
+set background=dark
 
-colorscheme subtle_light
+colorscheme subtle_dark
 " }}}
 
 
@@ -100,28 +100,26 @@ colorscheme subtle_light
 
 
 " Function: display errors from Ale in statusline
-function! LinterStatus() abort
-   let l:counts = ale#statusline#Count(bufnr(''))
-   let l:all_errors = l:counts.error + l:counts.style_error
-   let l:all_non_errors = l:counts.total - l:all_errors
-   return l:counts.total == 0 ? '' : printf(
-   \ 'Warn: %d Err: %d',
-   \ l:all_non_errors,
-   \ l:all_errors
-   \)
-endfunction
+" function! LinterStatus() abort
+   " let l:counts = ale#statusline#Count(bufnr(''))
+   " let l:all_errors = l:counts.error + l:counts.style_error
+   " let l:all_non_errors = l:counts.total - l:all_errors
+   " return l:counts.total == 0 ? '' : printf(
+   " \ 'Warn: %d Err: %d',
+   " \ l:all_non_errors,
+   " \ l:all_errors
+   " \)
+" endfunction
 
 
 
-set laststatus=2
-set statusline=
-set statusline+=%1*\ %F\ %*                                         " Show filename
-set statusline+=%1*\ %m                                             " Show file modification indicator
-set statusline+=%=                                               " Switch sides
-set statusline+=%1*\ %{LinterStatus()}                              " Show ALE lint warnings / errors
-set statusline+=%1*\ branch(%{gitbranch#name()})\                   " Show Git branch
-
-hi User1 guifg=#FFFFFF guibg=#268bd2 gui=BOLD
+set laststatus=0
+" set statusline=
+" set statusline+=\ %F\ %*                                         " Show filename
+" set statusline+=\ %m                                             " Show file modification indicator
+" set statusline+=%=                                               " Switch sides
+" set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
+" set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 " }}}
 
 
@@ -146,9 +144,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 let g:indentLine_char = '¦'
 " subtle_light
-let g:indentLine_color_gui = '#eee8d5'
+" let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-" let g:indentLine_color_gui = '#073642'
+let g:indentLine_color_gui = '#073642'
 " }}}
 
 
