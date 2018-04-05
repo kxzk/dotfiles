@@ -80,10 +80,10 @@ Plug 'gaalcaras/ncm-R'                                              " R auto-com
 Plug 'davidhalter/jedi'
 " Used for support of pythonDocstring coloring
 Plug 'Hyleus/vim-python-syntax'                                     " Enhanced Python syntax
+Plug 'roxma/ncm-clang'
 
 " colorschemes
 Plug 'beigebrucewayne/subtle_solo'
-Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 "
@@ -92,7 +92,7 @@ call plug#end()
 " << COLORSCHEMES >>
 set background=light
 
-colorscheme papercolor
+colorscheme subtle_light
 " }}}
 
 
@@ -115,11 +115,13 @@ endfunction
 
 set laststatus=2
 set statusline=
-set statusline+=\ %F\ %*                                         " Show filename
-set statusline+=\ %m                                             " Show file modification indicator
+set statusline+=%1*\ %F\ %*                                         " Show filename
+set statusline+=%1*\ %m                                             " Show file modification indicator
 set statusline+=%=                                               " Switch sides
-set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
-set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
+set statusline+=%1*\ %{LinterStatus()}                              " Show ALE lint warnings / errors
+set statusline+=%1*\ branch(%{gitbranch#name()})\                   " Show Git branch
+
+hi User1 guifg=#FFFFFF guibg=#268bd2 gui=BOLD
 " }}}
 
 
