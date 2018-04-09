@@ -1,4 +1,3 @@
-# Yay! High voltage and arrows!
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
