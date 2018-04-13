@@ -63,7 +63,6 @@ Plug 'junegunn/vim-easy-align'                                      " Easy align
 Plug 'mattn/gist-vim'                                               " Vim snippets --> Github gist
 Plug 'mattn/webapi-vim'                                             " Gist-Vim dep, interface to web APIs
 Plug 'aserebryakov/vim-todo-lists'
-Plug 'edkolev/tmuxline.vim'
 
 " LSP
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language server client
