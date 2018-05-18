@@ -137,7 +137,7 @@ let g:indentLine_char = '¦'
 " subtle_light
 " let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-" let g:indentLine_color_gui = '#073642'
+let g:indentLine_color_gui = '#073642'
 " }}}
 
 
@@ -295,7 +295,7 @@ set noruler             " turn off line, column numbers
 set noshowmode          " don't show current mode
 set noshowcmd           " don't show command
 
-set wrap                " enable line wrapping
+set nowrap              " don't wrap lines
 set t_Co=256
 set history=100         " lines of history VIM remembers
 set gcr=a:blinkon0      " disable cursor blink
@@ -309,7 +309,6 @@ set shiftwidth=4        "  number of spaces for autoindenting
 set expandtab           " spaces instead of tab characters
 set shiftround
 set autoindent
-set copyindent          " copy existing indent behavior of file
 set autochdir           " change current dir to file in viewed buffer
 set scrolloff=5         " lines after/before cursor on scroll
 set breakindent         " long lines will wrap with indentation
@@ -322,18 +321,16 @@ set showmatch           " highlight matching [{()}]
 set incsearch           " search characters as enetered
 set hlsearch            " highlight matches
 set foldenable          " enable folding
-set foldlevelstart=10   " open most folds by default
-set foldnestmax=10      " 10 nested fold max
-set foldmethod=indent   " fold based on indent level
 set mouse=a             " enable mouse
 set hidden              " buffers exist without windows 
-set numberwidth=4
 set number              " show line number
 set relativenumber      " show relative line number set nobackup            " take care of backup files
-set writebackup         " no backup files
+set nobackup
+set nowritebackup         " no backup files
 set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
 " set fillchars+=vert:\   " get rid of vert split '|' character
+" set copyindent          " copy existing indent behavior of file
 " set wildmenu            " autocomplete for command menu
 " set wildmode=list:full
 " set wildignorecase
