@@ -18,38 +18,22 @@
 "                           (O____)
 "
 "
+"   Minimal .vimrc for working on remote servers
+"   It is what it is
+"   No plugins, no statusline, just good 'ole Vim
+" 
 
-" filetype indent plugin on
+filetype indent plugin on
 set encoding=utf-8
 scriptencoding utf-8
 
-" if !exists('g:syntax_on')
-"     syntax enable
-" endif
+if !exists('g:syntax_on')
+    syntax enable
+endif
 
 let g:mapleader = "\<Space>"
 
 set cursorline
-
-" Check for vim-plug
-" If not there, get it
-if empty(glob('~/.vim/autoload/plug.vim'))
-      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'w0rp/ale'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'python-mode/python-mode'
-
-call plug#end()
-
-set background=dark
-colorscheme subtle_dark
 
 " NO STATUSLINE
 set laststatus=0
@@ -61,17 +45,7 @@ let g:netrw_browse_split = 1
 let g:netrw_winsize = 20
 let g:netrw_altv = 1
 
-" NERDTREE
-let g:NERDSpaceDelims = 1
-let g:NERDTrimTrailingWhitespace = 1
-let g:NerdTreeCascadeSingleChildDir = 0
-let g:NERDTreeShowLineNumbers = 1
-let g:NERDTreeWinPos = 'left'
-map <leader>nt :NERDTreeToggle<CR>
-
 " CORE SETTINGS
-set number
-set relativenumber
 set noruler
 set noshowmode
 set noshowcmd
