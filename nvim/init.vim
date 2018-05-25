@@ -51,9 +51,8 @@ Plug 'matze/vim-move'                                               " Easily mov
 Plug 'python-mode/python-mode', { 'for': 'python' }                 " Enhancements for Python
 Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
-Plug 'BurningEther/iron.nvim', { 'do': ':UpdateRemotePlugins' }     " Repls for various languages
-Plug 'Yggdroot/indentline'                                          " Visual indent lines
-Plug 'adelarsq/vim-hackernews'                                      " Hacker News
+" Plug 'Yggdroot/indentline'                                          " Visual indent lines
+" Plug 'BurningEther/iron.nvim', { 'do': ':UpdateRemotePlugins' }     " Repls for various languages
 " Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
 " LSP
@@ -133,11 +132,13 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " << INDENT LINE >> {{{
 
-let g:indentLine_char = '¦'
+" let g:indentLine_char = '¦'
 " subtle_light
 " let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-let g:indentLine_color_gui = '#073642'
+" let g:indentLine_color_gui = '#073642'
+" subtle_light - cterm
+" let g:indentLine_color_term = 7
 " }}}
 
 
@@ -149,10 +150,8 @@ let g:LanguageClient_autoStart = 1
 " nnoremap <leader>lcs :LanguageClientStart<CR>
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls', '-v'] }
-
-    " Took out rust beacuase it was max'ing out the CPU
-    " \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+    \ 'python': ['pyls', '-v'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
 
 
 noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
@@ -164,10 +163,10 @@ noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
 
 let g:deoplete#enable_at_startup = 1
 
-call deoplete#custom#option({ 'auto_complete_delay': 5, 'max_list': 50 })
+call deoplete#custom#option({ 'auto_complete_delay': 3, 'max_list': 50 })
 
 let g:deoplete#sources#rust#racer_binary='/Users/Kade.Killary/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/Users/Kade.Killary/.cargo/bin/rustc'
+let g:deoplete#sources#rust#rust_source_path='/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 
 " nmap <buffer> gd <plug>DeopleteRustGoToDefinitionSplit
 " nmap <buffer> K  <plug>DeopleteRustShowDocumentation
@@ -184,12 +183,12 @@ let g:rustfmt_autosave = 1
 
 " << IRON.VIM >> {{{
 
-let g:iron_repl_open_cmd = 'vsplit'
-let g:iron_map_defaults = 0
+" let g:iron_repl_open_cmd = 'vsplit'
+" let g:iron_map_defaults = 0
 
-nmap + <Plug>(iron-send-motion)
-vmap + <Plug>(iron-send-motion)
-nmap rr <Plug>(iron-repeat-cmd)
+" nmap + <Plug>(iron-send-motion)
+" vmap + <Plug>(iron-send-motion)
+" nmap rr <Plug>(iron-repeat-cmd)
 " }}}
 
 
@@ -230,7 +229,7 @@ let g:pymode_virtualenv = 1
 
 " << NERDTREE >> {{{
 
-let g:NerdTreeCascadeSingleChildDir= 0
+let g:NerdTreeCascadeSingleChildDir = 0
 let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinPos = 'left'
 let g:NERDTreeShowBookmarks = 1
@@ -298,7 +297,7 @@ set noshowcmd           " don't show command
 set nowrap              " don't wrap lines
 set t_Co=256
 set history=100         " lines of history VIM remembers
-set gcr=a:blinkon0      " disable cursor blink
+set guicursor=a:blinkon0      " disable cursor blink
 set autochdir           " change working directory to current file
 set shortmess=a         " get ride of annoying Enter/command prompt
 set cmdheight=1         " height of command bar
@@ -330,16 +329,16 @@ set nowritebackup         " no backup files
 set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
 " set fillchars+=vert:\   " get rid of vert split '|' character
-" set copyindent          " copy existing indent behavior of file
-" set wildmenu            " autocomplete for command menu
-" set wildmode=list:full
-" set wildignorecase
-" set list
-" set listchars=tab:>-,trail:*
 " set smartindent       " like autoindent, but smarter about C -> deprecated
-" for cindent
-" set clipboard+=unnamed  " Yanks go on clipboard instead.
-" set spell spelllang=en  " enable spellchecking
+" }}}
+
+
+" << TEMPLATES >> {{{
+
+augroup FileTemplates
+    autocmd!
+    autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.skeleton
+augroup END
 " }}}
 
 
@@ -362,7 +361,7 @@ nnoremap <leader>s :%s/
 nnoremap <silent> <F2> :lchdir %:p:h<CR>:pwd<CR>
 
 " HackerNews
-nnoremap <leader>hn :HackerNews<CR><CR>
+" nnoremap <leader>hn :HackerNews<CR><CR>
 
 " Remove search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
