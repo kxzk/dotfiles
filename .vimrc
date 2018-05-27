@@ -48,8 +48,8 @@ Plug 'python-mode/python-mode'
 
 call plug#end()
 
-set background=light
-colorscheme subtle_light
+set background=dark
+colorscheme subtle_dark
 
 " NO STATUSLINE
 set laststatus=0
