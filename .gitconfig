@@ -60,4 +60,4 @@
 [github]
 	user = kadekillary
 [core]
-	excludefiles = $HOME/.gitignore_global
+	editor = nvim
