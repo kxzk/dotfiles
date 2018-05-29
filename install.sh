@@ -27,7 +27,7 @@ ln -sv -f /home/ubuntu/subtle_solo/colors/subtle_dark.vim /home/ubuntu/.vim/colo
 ln -sv -f /home/ubuntu/subtle_solo/colors/subtle_light.vim /home/ubuntu/.vim/colors
 
 # my dotfiles
-git clone https://@github.com/kadekillary/dotfiles.git
+git clone https://github.com/kadekillary/dotfiles.git
 
 ln -sv -f /home/ubuntu/dotfiles/.vimrc /home/ubuntu
 ln -sv -f /home/ubuntu/dotfiles/.tmux.conf /home/ubuntu
