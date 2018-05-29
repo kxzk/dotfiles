@@ -39,8 +39,8 @@ sudo apt-get install python3-pip --yes
 pip3 install --upgrade pip
 
 # python 3.6
-sudo add-apt-repository ppa:deadsnakes/ppa --yes
-sudo apt update
+sudo add-apt-repository ppa:jonathonf/python-3.6 --yes
+sudo apt-get update
 sudo apt-get install python3.6 --yes
 
 # install utils
