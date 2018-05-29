@@ -24,8 +24,8 @@ window:
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 1
-    y: 1
+    x: 0
+    y: 0
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
@@ -49,13 +49,13 @@ font:
   bold:
     family: Iosevka
     # Style can be specified to pick a specific face.
-    style: Heavy
+    style: Bold
 
   # The italic font face
   italic:
     family: Iosevka
     # Style can be specified to pick a specific face.
-    style: Light
+    style: Thin
 
   # Point size of the font
   size: 16.0
@@ -76,7 +76,7 @@ font:
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # Should display the render timer
 render_timer: false
@@ -112,7 +112,7 @@ colors:
     blue:    '0x839496'
     magenta: '0x6c71c4'
     cyan:    '0x93a1a1'
-    white: '0xfdf6e3'
+    white:   '0xfdf6e3'
 
 
 # Visual Bell

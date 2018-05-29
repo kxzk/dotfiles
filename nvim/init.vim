@@ -65,9 +65,11 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Language Support
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }                        " Enhancements for Rust
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }                            " Vim script support / linting
 Plug 'Hyleus/vim-python-syntax', { 'for': 'python' }                " Python syntax, supports PythonDocstring
 " Plug 'gaalcaras/ncm-R'                                              " R auto-completion
@@ -142,6 +144,28 @@ let g:NERDTrimTrailingWhitespace = 1
 " }}}
 
 
+" << GO >> {{{
+
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+
+let g:go_fmt_command = 'goimports'
+
+augroup GoOpts
+    autocmd!
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+    autocmd FileType go nmap <leader>i <Plug>(go-imports)
+    autocmd FileType go nmap <leader>b <Plug>(go-build)
+    autocmd FileType go nmap <leader>r <Plug>(go-run)
+    autocmd FileType go nmap <leader>t <Plug>(go-test)
+augroup END
+" }}}
+
+
 " << LSP >> {{{
 
 let g:LanguageClient_autoStart = 1
@@ -151,7 +175,8 @@ let g:LanguageClient_autoStart = 1
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls', '-v'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'go': ['go-langserver'] }
 
 
 noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
@@ -165,8 +190,11 @@ let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({ 'auto_complete_delay': 3, 'max_list': 50 })
 
-let g:deoplete#sources#rust#racer_binary='/Users/Kade.Killary/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#racer_binary = '/Users/Kade.Killary/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path = '/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+
+let g:deoplete#sources#go#gocode_binary = '/Users/Kade.Killary/gonads/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " nmap <buffer> gd <plug>DeopleteRustGoToDefinitionSplit
 " nmap <buffer> K  <plug>DeopleteRustShowDocumentation
@@ -243,7 +271,6 @@ augroup FileOptions
   autocmd!
   " indentation
   " (for comments moving to BOL): https://stackoverflow.com/questions/2063175/comments-go-to-start-of-line-in-the-insert-mode-in-vim
-  autocmd Filetype go setlocal nolist noet sts=0 sw=0
   autocmd Filetype python setlocal sts=4 sw=4 wrap
   " autocmd Filetype r setlocal ts=2 sw=2 sts=2 expandtab
   autocmd Filetype r setlocal ts=2 sw=2
