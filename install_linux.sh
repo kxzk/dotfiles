@@ -8,7 +8,10 @@ sudo apt-get dist-upgrade --yes
 sudo apt-get autoremove --yes
 sudo apt-get autoclean --yes
 
-sudo apt install tree
+# basic utils
+sudo apt-get install tree --yes
+sudo apt-get install parallel --yes
+sudo apt-get install shellcheck --yes
 
 # my colorscheme
 git clone https://github.com/kadekillary/subtle_solo.git
@@ -19,7 +22,7 @@ mkdir colors
 cd
 
 # bash scripts
-git clone https://@github.com/kadekillary/bashing.git
+git clone https://github.com/kadekillary/bashing.git
 echo 'echo PATH=~/bashing:$PATH' >> ~/.bashrc
 
 # bring in my colors
@@ -43,18 +46,31 @@ sudo add-apt-repository ppa:jonathonf/python-3.6 --yes
 sudo apt-get update
 sudo apt-get install python3.6 --yes
 
-# install utils
-sudo apt-get install shellcheck --yes
+# vim 8
 sudo add-apt-repository ppa:jonathonf/vim --yes
 sudo apt update
 sudo apt-get install vim --yes
 
+# rust
+curl https://sh.rustup.rs -sSf | sh
+
+# go
+wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz
+sudo tar -xvf go1.10.2.linux-amd64.tar.gz
+sudo mv go /usr/local
+
+'export GOROOT=/usr/local/go' >> ~/.profile
+'export GOPATH=$HOME/go-workspace' >> ~/.profile
+'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.profile
+
+source ~/.profile
+
 # python packages
-pip3 install awscli
-pip3 install dbt
-pip3 install pipenv
-pip3 install visidata
-pip3 install boto3
+pip3 install awscli --user
+pip3 install dbt --user
+pip3 install pipenv --user
+pip3 install visidata --user
+pip3 install boto3 --user
 
 # aliases
 echo 'alias nvim="vim"' >> ~/.bashrc
