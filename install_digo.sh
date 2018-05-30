@@ -29,11 +29,16 @@ echo 'export GOROOT=/usr/local/go' >> ~/.profile
 echo 'export GOPATH=$HOME/go-workspace' >> ~/.profile
 echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.profile
 
-source ~/.profile
+mkdir go-workspace
+
+source .profile
 
 # .vimrc
 curl https://gist.githubusercontent.com/kadekillary/555cc392d90d4bd0915f08e7f45369da/raw > .vimrc
 
 echo 'export EDITOR="vim"' >> ~/.bashrc
 
-source ~/.bashrc
+source .bashrc
+
+sudo apt-get update
+sudo apt-get upgrade --yes
