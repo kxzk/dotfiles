@@ -30,6 +30,9 @@ echo 'export GOPATH=$HOME/go-workspace' >> ~/.profile
 echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.profile
 
 mkdir go-workspace
+cd go-workspace/
+mkdir src bin pkg
+cd
 
 source .profile
 
