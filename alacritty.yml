@@ -17,8 +17,8 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 140
-    lines: 30
+    columns: 150
+    lines: 50
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
@@ -43,19 +43,19 @@ font:
   normal:
     family: Fira Code
     # Style can be specified to pick a specific face.
-    style: Light
+    style: Regular
 
   # The bold font face
   bold:
     family: Fira Code
     # Style can be specified to pick a specific face.
-    style: Regular
+    style: Medium
 
   # The italic font face
   italic:
     family: Fira Code
     # Style can be specified to pick a specific face.
-    style: Thin
+    style: Light
 
   # Point size of the font
   size: 15.0
@@ -63,14 +63,14 @@ font:
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 0
-    y: 1
+    x: -0.1
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: -0.5
+    x: 0
     y: 0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
@@ -83,14 +83,43 @@ render_timer: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: true
+custom_cursor_colors: false
 
 # Colors (Solarized Dark)
+# colors:
+  # Default colors
+  # primary:
+    # background: '0x002b36'
+    # foreground: '0x839496'
+
+  # Normal colors
+  # normal:
+    # black:   '0x073642'
+    # red:     '0xdc322f'
+    # green:   '0x859900'
+    # yellow:  '0xb58900'
+    # blue:    '0x268bd2'
+    # magenta: '0xd33682'
+    # cyan:    '0x2aa198'
+    # white:   '0xeee8d5'
+
+  # Bright colors
+  # bright:
+    # black:   '0x002b36'
+    # red:     '0xcb4b16'
+    # green:   '0x586e75'
+    # yellow:  '0x657b83'
+    # blue:    '0x839496'
+    # magenta: '0x6c71c4'
+    # cyan:    '0x93a1a1'
+    # white:   '0xfdf6e3'
+
+# Colors (Solarized Light)
 colors:
   # Default colors
   primary:
-    background: '0x002b36'
-    foreground: '0x839496'
+    background: '0xfdf6e3'
+    foreground: '0x586e75'
 
   # Normal colors
   normal:
@@ -113,7 +142,6 @@ colors:
     magenta: '0x6c71c4'
     cyan:    '0x93a1a1'
     white:   '0xfdf6e3'
-
 
 # Visual Bell
 #
@@ -186,7 +214,7 @@ selection:
 
 dynamic_title: false
 
-hide_cursor_when_typing: false
+hide_cursor_when_typing: true
 
 # Style of the cursor
 #
@@ -204,10 +232,10 @@ live_config_reload: true
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
-shell:
-  program: /bin/zsh
-  args:
-    --login
+# shell:
+#   program: /bin/bash
+#   args:
+#     - --login
 
 # Key bindings
 #

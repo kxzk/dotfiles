@@ -9,4 +9,4 @@
 #
 
 set -o errexit  # Exit on most errors
-set -o xtrace   # Trace execution (debug)
+set -o xtrace   # Trace execution

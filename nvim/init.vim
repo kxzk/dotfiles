@@ -33,7 +33,7 @@ endif
 
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
-" set colorcolumn=80
+set colorcolumn=80
 " }}}
 
 
@@ -48,18 +48,18 @@ Plug 'tpope/vim-surround'                                           " Operations
 Plug 'wellle/targets.vim'                                           " Additional text objects
 Plug 'rizzatti/dash.vim'                                            " Integartion with Dash
 Plug 'matze/vim-move'                                               " Easily move lines
-Plug 'python-mode/python-mode', { 'for': 'python' }                 " Enhancements for Python
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
+Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for various languages
 " Plug 'Yggdroot/indentline'                                          " Visual indent lines
-" Plug 'BurningEther/iron.nvim', { 'do': ':UpdateRemotePlugins' }     " Repls for various languages
 " Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
 " LSP
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ }
 
 " Deoplete - completion framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -68,12 +68,12 @@ Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Language Support
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }                        " Enhancements for Rust
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Shougo/neco-vim', { 'for': 'vim' }                            " Vim script support / linting
-Plug 'Hyleus/vim-python-syntax', { 'for': 'python' }                " Python syntax, supports PythonDocstring
+Plug 'Shougo/neco-vim', { 'for': 'vim' }
+Plug 'plasticboy/vim-markdown'
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 " Plug 'gaalcaras/ncm-R'                                              " R auto-completion
-" Plug 'davidhalter/jedi'
 
 " colorschemes
 Plug 'kadekillary/subtle_solo'
@@ -82,9 +82,9 @@ call plug#end()
 "
 
 " << COLORSCHEMES >>
-set background=dark
+set background=light
 
-colorscheme subtle_dark
+colorscheme subtle_light
 " }}}
 
 
@@ -105,13 +105,17 @@ colorscheme subtle_dark
 
 
 
-set laststatus=0
-" set statusline=
-" set statusline+=\ %F\ %*                                         " Show filename
-" set statusline+=\ %m                                             " Show file modification indicator
-" set statusline+=%=                                               " Switch sides
+set laststatus=2
+set statusline=%1*
+set statusline+=%=
+set statusline+=%2*\ *                                               " Switch sides
+set statusline+=%1*\ %F                                            " Show filename
+set statusline+=%2*\ %m                                            " Show file modification indicator
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
+
+hi User1 guifg=#2aa198 guibg=#eee8d5 ctermfg=0
+hi User2 guifg=#ffffff guibg=#eee8d5 ctermfg=1
 " }}}
 
 
@@ -145,13 +149,17 @@ let g:NERDTrimTrailingWhitespace = 1
 
 
 " << GO >> {{{
+"
 
 let g:go_highlight_fields = 1
 let g:go_highlight_structs = 1
+" let g:go_highlight_variable_assignments = 1
 let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_function_arguments = 1
+let g:go_highlight_function_calls = 1
 
 let g:go_fmt_command = 'goimports'
 
@@ -168,33 +176,43 @@ augroup END
 
 " << LSP >> {{{
 
-let g:LanguageClient_autoStart = 1
-
-" Manually start LSP
-" nnoremap <leader>lcs :LanguageClientStart<CR>
-
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls', '-v'],
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ 'go': ['go-langserver'] }
+" let g:LanguageClient_autoStart = 1
 
 
-noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
-noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
+
+" let g:LanguageClient_serverCommands = {
+    " \ 'python': ['pyls'],
+    " \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    " \ 'go': ['go-langserver'] }
+
+
+" noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
+" noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
 " }}}
 
 
 " << DEOPLETE >> {{{
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#skip_chars = ['(', ')', '<', '>']
 
-call deoplete#custom#option({ 'auto_complete_delay': 3, 'max_list': 50 })
+call deoplete#custom#option({
+\ 'auto_complete_delay': 0,
+\ 'max_list': 50,
+\ 'min_pattern_length': 2,
+\ 'refresh_always': v:true,
+\ })
 
 let g:deoplete#sources#rust#racer_binary = '/Users/Kade.Killary/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = '/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 
 let g:deoplete#sources#go#gocode_binary = '/Users/Kade.Killary/gonads/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
+" call deoplete#custom#source('jedi', 'debug_enabled', 1)
+let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3.6'
+" Increase server time to get completions on large package (i.e. pandas)
+let g:deoplete#sources#jedi#server_timeout = 50
 
 " nmap <buffer> gd <plug>DeopleteRustGoToDefinitionSplit
 " nmap <buffer> K  <plug>DeopleteRustShowDocumentation
@@ -211,12 +229,14 @@ let g:rustfmt_autosave = 1
 
 " << IRON.VIM >> {{{
 
-" let g:iron_repl_open_cmd = 'vsplit'
-" let g:iron_map_defaults = 0
+nnoremap <leader>ir :IronRepl<CR>
 
-" nmap + <Plug>(iron-send-motion)
-" vmap + <Plug>(iron-send-motion)
-" nmap rr <Plug>(iron-repeat-cmd)
+let g:iron_repl_open_cmd = 'vsplit'
+let g:iron_map_defaults = 0
+
+nmap + <Plug>(iron-send-motion)
+vmap + <Plug>(iron-send-motion)
+nmap rr <Plug>(iron-repeat-cmd)
 " }}}
 
 
@@ -241,11 +261,31 @@ let g:rustfmt_autosave = 1
 
 " << PYTHON >> {{{
 
+let g:python_host_prog = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3.6'
+
+" vim-python/python-syntax
+let g:python_highlight_builtins = 1
+let g:python_highlight_builtin_objs = 1
+let g:python_highlight_builtin_funcs = 1
+let g:python_highlight_builtin_funcs_kwarg = 1
+let g:python_highlight_exceptions = 1
+let g:python_highlight_string_formatting = 1
+let g:python_highlight_string_format = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_indent_errors = 1
+let g:python_highlight_space_errors = 1
+let g:python_highlight_doctests = 1
+let g:python_highlight_class_vars = 1
+let g:python_highlight_operators = 1
+let g:python_highlight_file_headers_as_comments = 1
+
+
 " pymode
-let g:pymode_syntax_all = 1
+let g:pymode_python='python3'
+" let g:pymode_paths = ['/usr/local/bin/python3.6']
 let g:pymode_trim_whitespaces = 1
 let g:pymode_indent = 1                     " PEP-8 compatible indent
-let g:pymode_python='python3'
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint = 0
 let g:pymode_lint_on_write = 0
@@ -274,6 +314,7 @@ augroup FileOptions
   autocmd Filetype python setlocal sts=4 sw=4 wrap
   " autocmd Filetype r setlocal ts=2 sw=2 sts=2 expandtab
   autocmd Filetype r setlocal ts=2 sw=2
+  autocmd BufRead,BufNewFile *.md set wrap
   autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 syntax=javascript
   " https://calebthompson.io/crontab-and-vim-sitting-in-a-tree
   autocmd Filetype crontab setlocal nobackup nowritebackup
@@ -320,6 +361,9 @@ endif
 set noruler             " turn off line, column numbers
 set noshowmode          " don't show current mode
 set noshowcmd           " don't show command
+
+" Always go right
+set splitright
 
 set nowrap              " don't wrap lines
 set t_Co=256
@@ -385,10 +429,7 @@ inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype
 nnoremap <leader>s :%s/
 
 " Echo path current directory
-nnoremap <silent> <F2> :lchdir %:p:h<CR>:pwd<CR>
-
-" HackerNews
-" nnoremap <leader>hn :HackerNews<CR><CR>
+" nnoremap <silent> <F2> :lchdir %:p:h<CR>:pwd<CR>
 
 " Remove search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
