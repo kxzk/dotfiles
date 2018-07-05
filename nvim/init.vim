@@ -107,15 +107,18 @@ colorscheme subtle_light
 
 set laststatus=2
 set statusline=%1*
-set statusline+=%=
 set statusline+=%2*\ *                                               " Switch sides
-set statusline+=%1*\ %F                                            " Show filename
+set statusline+=%1*\ %f                                            " Show filename
 set statusline+=%2*\ %m                                            " Show file modification indicator
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
-hi User1 guifg=#2aa198 guibg=#eee8d5 ctermfg=0
-hi User2 guifg=#ffffff guibg=#eee8d5 ctermfg=1
+" subtle_light colors
+hi User1 guifg=#000000 guibg=#eee8d5 gui=BOLD ctermfg=0
+hi User2 guifg=#ffffff guibg=#eee8d5 gui=BOLD ctermfg=1
+" subtle_dark colors
+" hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0
+" hi User2 guifg=#ffffff guibg=#073642 ctermfg=1
 " }}}
 
 
@@ -234,7 +237,7 @@ nnoremap <leader>ir :IronRepl<CR>
 let g:iron_repl_open_cmd = 'vsplit'
 let g:iron_map_defaults = 0
 
-nmap + <Plug>(iron-send-motion)
+nmap + <S-v><Plug>(iron-send-motion)
 vmap + <Plug>(iron-send-motion)
 nmap rr <Plug>(iron-repeat-cmd)
 " }}}
