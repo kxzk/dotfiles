@@ -265,7 +265,7 @@ nmap rr <Plug>(iron-repeat-cmd)
 " << PYTHON >> {{{
 
 let g:python_host_prog = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3.6'
+let g:python3_host_prog = '/usr/local/bin/python3.7'
 
 " vim-python/python-syntax
 let g:python_highlight_builtins = 1
