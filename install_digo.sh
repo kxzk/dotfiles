@@ -60,3 +60,9 @@ mkdir colors
 cd colors
 curl https://gist.githubusercontent.com/kadekillary/dd8ad27cd950556e15137cf590371963/raw > subtle_light.vim
 cd
+
+echo "alias ..='cd ..'" >> .bashrc
+echo "alias ...='cd ../../'" >> .bashrc
+echo "alias ....='cd ../../../'" >> .bashrc
+echo "alias .....='cd ../../../../'" >> .bashrc
+echo "alias ......='cd ../../../../../'" >> .bashrc

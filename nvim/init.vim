@@ -115,7 +115,7 @@ set statusline+=%2*\ %m                                            " Show file m
 
 " subtle_light colors
 hi User1 guifg=#000000 guibg=#eee8d5 gui=BOLD ctermfg=0
-hi User2 guifg=#ffffff guibg=#eee8d5 gui=BOLD ctermfg=1
+hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=1
 " subtle_dark colors
 " hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0
 " hi User2 guifg=#ffffff guibg=#073642 ctermfg=1
@@ -265,7 +265,7 @@ nmap rr <Plug>(iron-repeat-cmd)
 " << PYTHON >> {{{
 
 let g:python_host_prog = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3.7'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " vim-python/python-syntax
 let g:python_highlight_builtins = 1
