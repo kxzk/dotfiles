@@ -82,9 +82,9 @@ call plug#end()
 "
 
 " << COLORSCHEMES >>
-set background=light
+set background=dark
 
-colorscheme subtle_light
+colorscheme subtle_dark
 " }}}
 
 
@@ -114,11 +114,11 @@ set statusline+=%2*\ %m                                            " Show file m
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
 " subtle_light colors
-hi User1 guifg=#000000 guibg=#eee8d5 gui=BOLD ctermfg=0
-hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=1
+" hi User1 guifg=#000000 guibg=#eee8d5 gui=BOLD ctermfg=0
+" hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=1
 " subtle_dark colors
-" hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0
-" hi User2 guifg=#ffffff guibg=#073642 ctermfg=1
+hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0
+hi User2 guifg=#ffffff guibg=#073642 ctermfg=1
 " }}}
 
 
