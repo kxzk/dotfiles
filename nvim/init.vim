@@ -17,7 +17,7 @@
 "
 
 
-" << STARTERS >> {{{
+" << STARTERS >> 
 
 filetype indent plugin on
 set encoding=utf-8
@@ -34,10 +34,10 @@ endif
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
 set colorcolumn=80
-" }}}
+" 
 
 
-" << PLUGINS >> {{{
+" << PLUGINS >> 
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -73,10 +73,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
+Plug 'ambv/black'
 " Plug 'gaalcaras/ncm-R'                                              " R auto-completion
 
 " colorschemes
 Plug 'kadekillary/subtle_solo'
+Plug 'renechz/tiki.vim'
 
 call plug#end()
 "
@@ -84,11 +86,11 @@ call plug#end()
 " << COLORSCHEMES >>
 set background=dark
 
-colorscheme subtle_dark
-" }}}
+colorscheme tiki_machine
+" 
 
 
-" << STATUSLINE >> {{{
+" << STATUSLINE >> 
 
 
 " Function: display errors from Ale in statusline
@@ -105,11 +107,11 @@ colorscheme subtle_dark
 
 
 
-set laststatus=2
-set statusline=%1*
-set statusline+=%2*\ *                                               " Switch sides
-set statusline+=%1*\ %f                                            " Show filename
-set statusline+=%2*\ %m                                            " Show file modification indicator
+set laststatus=0
+" set statusline=
+" set statusline=\                                               " Switch sides
+" set statusline+=\ %f                                            " Show filename
+" set statusline+=\ %m                                            " Show file modification indicator
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
@@ -117,29 +119,29 @@ set statusline+=%2*\ %m                                            " Show file m
 " hi User1 guifg=#000000 guibg=#eee8d5 gui=BOLD ctermfg=0
 " hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=1
 " subtle_dark colors
-hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0
-hi User2 guifg=#ffffff guibg=#073642 ctermfg=1
-" }}}
+" hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0
+" hi User2 guifg=#ffffff guibg=#073642 ctermfg=1
+" 
 
 
-" << NETRW >> {{{
+" << NETRW >> 
 
 let g:netrw_liststyle = 3                                        " Tree style
 let g:netrw_banner = 0                                           " No banner
 let g:netrw_browse_split = 1
 let g:netrw_winsize = 20
 let g:netrw_altv = 1
-" }}}
+" 
 
 
-" << NERD COMMENTER >> {{{
+" << NERD COMMENTER >> 
 
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
-"  }}}
+"  
 
 
-" << INDENT LINE >> {{{
+" << INDENT LINE >> 
 
 " let g:indentLine_char = '¦'
 " subtle_light
@@ -148,10 +150,10 @@ let g:NERDTrimTrailingWhitespace = 1
 " let g:indentLine_color_gui = '#073642'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
-" }}}
+" 
 
 
-" << GO >> {{{
+" << GO >> 
 "
 
 let g:go_highlight_fields = 1
@@ -174,10 +176,10 @@ augroup GoOpts
     autocmd FileType go nmap <leader>r <Plug>(go-run)
     autocmd FileType go nmap <leader>t <Plug>(go-test)
 augroup END
-" }}}
+" 
 
 
-" << LSP >> {{{
+" << LSP >> 
 
 " let g:LanguageClient_autoStart = 1
 
@@ -191,10 +193,10 @@ augroup END
 
 " noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 " noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
-" }}}
+" 
 
 
-" << DEOPLETE >> {{{
+" << DEOPLETE >> 
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#skip_chars = ['(', ')', '<', '>']
@@ -219,18 +221,18 @@ let g:deoplete#sources#jedi#server_timeout = 50
 
 " nmap <buffer> gd <plug>DeopleteRustGoToDefinitionSplit
 " nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-" }}}
+" 
 
 
 
-" << RUST >> {{{
+" << RUST >> 
 
 let g:rustc_path = '/Users/Kade.Killary/.cargo/bin/rustc'
 let g:rustfmt_autosave = 1
-" }}}
+" 
 
 
-" << IRON.VIM >> {{{
+" << IRON.VIM >> 
 
 nnoremap <leader>ir :IronRepl<CR>
 
@@ -240,10 +242,10 @@ let g:iron_map_defaults = 0
 nmap + <S-v><Plug>(iron-send-motion)
 vmap + <Plug>(iron-send-motion)
 nmap rr <Plug>(iron-repeat-cmd)
-" }}}
+" 
 
 
-" << R >> {{{
+" << R >> 
 
 " Resize R console based on window width
 " augroup R_Resize
@@ -259,10 +261,15 @@ nmap rr <Plug>(iron-repeat-cmd)
 " vmap , <Plug>RDSendSelection
 " vmap ,e <Plug>RESendSelection
 " nmap ,p <Plug>RPrintObj
-" }}}
+" 
 
 
-" << PYTHON >> {{{
+" << PYTHON >> 
+
+augroup PythonFMT
+    autocmd!
+    autocmd BufWritePre *.py execute ':Black'
+augroup END
 
 let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -295,20 +302,20 @@ let g:pymode_lint_on_write = 0
 let g:pymode_rope = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_virtualenv = 1
-" }}}
+" 
 
 
-" << NERDTREE >> {{{
+" << NERDTREE >> 
 
 let g:NerdTreeCascadeSingleChildDir = 0
 let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinPos = 'left'
 let g:NERDTreeShowBookmarks = 1
 map <leader>nt :NERDTreeToggle<CR>
-" }}}
+" 
 
 
-" << FILETYPE >> {{{
+" << FILETYPE >> 
 
 augroup FileOptions
   autocmd!
@@ -322,10 +329,10 @@ augroup FileOptions
   " https://calebthompson.io/crontab-and-vim-sitting-in-a-tree
   autocmd Filetype crontab setlocal nobackup nowritebackup
 augroup END
-" }}}
+" 
 
 
-" << ALE >> {{{
+" << ALE >> 
 
 let g:ale_enabled = 1
 let g:ale_sign_error = '✖︎'
@@ -341,20 +348,20 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 " let g:ale_sign_column_always = 1                " ale enabled
-" }}}
+" 
 
 
-" << FOLDING >> {{{
+" << FOLDING >> 
 
 augroup Folding
   autocmd!
   autocmd BufRead * setlocal foldmethod=marker    " using   fold method
   autocmd BufRead * normal zM
 augroup END
-" }}}
+" 
 
 
-" << BASICS >> {{{
+" << BASICS >> 
 
 if exists('&inccommand')
     set inccommand=split " (neovim) specific, live substitutin preview
@@ -404,20 +411,31 @@ set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
 " set fillchars+=vert:\   " get rid of vert split '|' character
 " set smartindent       " like autoindent, but smarter about C -> deprecated
-" }}}
+" 
 
 
-" << TEMPLATES >> {{{
+" << TEMPLATES >> 
 
 augroup FileTemplates
     autocmd!
     autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.skeleton
 augroup END
-" }}}
+" 
 
 
+" << MARKDOWN-TOC >> 
 
-" << KEY MAPPINGS >> {{{
+" Generate ToC
+nnoremap <leader>t :GenTocGFM<CR>
+" Update ToC
+nnoremap <leader>u :UpdateToc<CR>
+
+let g:vmt_auto_update_on_save = 1
+" 
+
+
+" << KEY MAPPINGS >> 
+
 
 " Vim Move <CTRL> binding
 let g:move_key_modifier = 'C'
@@ -445,7 +463,7 @@ nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 
 " <Leader>T = Delete all Trailing space in file
-nnoremap <Leader>T :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
+" nnoremap <Leader>T :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
 
 " fast saves
 nnoremap <leader>w :w!<CR>
