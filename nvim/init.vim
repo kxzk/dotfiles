@@ -55,17 +55,34 @@ Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for 
 " Plug 'Yggdroot/indentline'                                          " Visual indent lines
 " Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
-" LSP
-" Plug 'autozimu/LanguageClient-neovim', {
-    " \ 'branch': 'next',
-    " \ 'do': 'bash install.sh',
-    " \ }
-
 " Deoplete - completion framework
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+" Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" NCM2
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-jedi'                           " Python
+Plug 'ncm2/ncm2-racer'                          " Rust
+Plug 'ncm2/ncm2-vim'
+Plug 'ncm2/ncm2-go'
+
+" LSP
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" enable ncm2 for all buffers
+augroup NCM
+    autocmd!
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
+
+" enable popupopen
+set completeopt=noinsert,menuone,noselect
 
 " Language Support
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -107,11 +124,11 @@ colorscheme tiki_machine
 
 
 
-set laststatus=0
-" set statusline=
-" set statusline=\                                               " Switch sides
-" set statusline+=\ %f                                            " Show filename
-" set statusline+=\ %m                                            " Show file modification indicator
+set laststatus=2
+set statusline=
+set statusline=\                                               " Switch sides
+set statusline+=\ %F                                            " Show filename
+set statusline+=\ %m                                            " Show file modification indicator
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
@@ -181,14 +198,14 @@ augroup END
 
 " << LSP >> 
 
-" let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart = 1
 
 
 
-" let g:LanguageClient_serverCommands = {
-    " \ 'python': ['pyls'],
-    " \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    " \ 'go': ['go-langserver'] }
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'go': ['go-langserver'] }
 
 
 " noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
@@ -198,26 +215,26 @@ augroup END
 
 " << DEOPLETE >> 
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#skip_chars = ['(', ')', '<', '>']
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#skip_chars = ['(', ')', '<', '>']
 
-call deoplete#custom#option({
-\ 'auto_complete_delay': 0,
-\ 'max_list': 50,
-\ 'min_pattern_length': 2,
-\ 'refresh_always': v:true,
-\ })
+" call deoplete#custom#option({
+" \ 'auto_complete_delay': 0,
+" \ 'max_list': 50,
+" \ 'min_pattern_length': 2,
+" \ 'refresh_always': v:true,
+" \ })
 
-let g:deoplete#sources#rust#racer_binary = '/Users/Kade.Killary/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path = '/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+" let g:deoplete#sources#rust#racer_binary = '/Users/Kade.Killary/.cargo/bin/racer'
+" let g:deoplete#sources#rust#rust_source_path = '/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 
-let g:deoplete#sources#go#gocode_binary = '/Users/Kade.Killary/gonads/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" let g:deoplete#sources#go#gocode_binary = '/Users/Kade.Killary/gonads/bin/gocode'
+" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" call deoplete#custom#source('jedi', 'debug_enabled', 1)
-let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3.6'
-" Increase server time to get completions on large package (i.e. pandas)
-let g:deoplete#sources#jedi#server_timeout = 50
+" " call deoplete#custom#source('jedi', 'debug_enabled', 1)
+" let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3.6'
+" " Increase server time to get completions on large package (i.e. pandas)
+" let g:deoplete#sources#jedi#server_timeout = 50
 
 " nmap <buffer> gd <plug>DeopleteRustGoToDefinitionSplit
 " nmap <buffer> K  <plug>DeopleteRustShowDocumentation
@@ -271,8 +288,8 @@ augroup PythonFMT
     autocmd BufWritePre *.py execute ':Black'
 augroup END
 
-let g:python_host_prog = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python_host_prog = '/usr/local/bin/python2'
+" let g:python3_host_prog = '/usr/local/bin/python3.7'
 
 " vim-python/python-syntax
 let g:python_highlight_builtins = 1
