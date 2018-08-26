@@ -105,7 +105,6 @@ set background=dark
 colorscheme subtle_dark
 " 
 
-
 " << STATUSLINE >> 
 
 
@@ -125,14 +124,14 @@ colorscheme subtle_dark
 
 set laststatus=2
 set statusline=
-set statusline=%1*\                                               " Switch sides
+set statusline=\                                               " Switch sides
 set statusline+=%2*\ %F                                            " Show filename
 set statusline+=%1*\ %m                                            " Show file modification indicator
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
 " subtle_light colors
-" hi User1 guifg=#000000 guibg=#eee8d5 gui=BOLD ctermfg=0
+" hi User1 guifg=#839496 guibg=#eee8d5 gui=BOLD ctermfg=0
 " hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=1
 " subtle_dark colors
 hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0 gui=BOLD
