@@ -2,16 +2,16 @@
 
 # maintenance & clean up
 sudo apt-get update
-sudo apt-get upgrade --yes
 sudo apt-get dist-upgrade --yes
 sudo apt-get autoremove --yes
-sudo apt-get autoclean --yes
 
 # basic utils
 sudo apt-get install tree --yes
 sudo apt-get install virtualenv --yes
 sudo apt-get install mailutils --yes
 sudo apt-get install ssmtp --yes
+sudo apt-get install zip --yes
+sudo apt-get install python3-pip --yes
 
 # sudo vim /etc/ssmtp/ssmtp.conf
 # Uncomment FromLineOverride=YES by deleting the #
@@ -49,20 +49,36 @@ sudo apt-get install vim --yes
 # mkdir src bin pkg
 # cd
 
-# source .profile
+source .profile
 
-# .vimrc
 curl https://gist.githubusercontent.com/kadekillary/555cc392d90d4bd0915f08e7f45369da/raw > .vimrc
+
 
 mkdir .vim
 cd ~/.vim
 mkdir colors
 cd colors
-curl https://gist.githubusercontent.com/kadekillary/dd8ad27cd950556e15137cf590371963/raw > subtle_light.vim
+curl https://gist.githubusercontent.com/kadekillary/4f23495208df8f11ca8d540d0939486c/raw > subtle_dark.vim
 cd
 
-echo "alias ..='cd ..'" >> .bashrc
-echo "alias ...='cd ../../'" >> .bashrc
-echo "alias ....='cd ../../../'" >> .bashrc
-echo "alias .....='cd ../../../../'" >> .bashrc
-echo "alias ......='cd ../../../../../'" >> .bashrc
+echo 'export EDITOR="vim"' >> ~/.bashrc
+echo "alias ..='cd ..'" >> ~/.bashrc
+echo "alias ...='cd ...'" >> ~/.bashrc
+echo "alias ....='cd ....'" >> ~/.bashrc
+echo "alias .....='cd .....'" >> ~/.bashrc
+
+# bash scripts
+mkdir bin
+echo "export PATH=$HOME/bin:/usr/local/bin:$PATH" >> ~/.bashrc
+
+# enable color prompt
+sed -i '/#force_color_prompt/ s/#//' ~/.bashrc
+
+source ~/.bashrc
+
+sudo apt-get update --yes
+
+# git
+git config --global user.name "kade killary"
+git config --global user.email "kadekillary@pm.me"
+git config --global core.editor vim
