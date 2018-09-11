@@ -8,8 +8,8 @@
 "   oOOOOOba.                .adOOOOOOOOOOba               .adOOOOo.
 "  oOOOOOOOOOOOOOba.    .adOOOOOOOOOO@^OOOOOOOba.     .adOOOOOOOOOOOO
 "  OOOOOOOOOOOOOOOOO.OOOOOOOOOOOOOO"`  '"OOOOOOOOOOOOO.OOOOOOOOOOOOOO 
-"    Y           'OOOOOOOOOOOOOO: .oOOo. :OOOOOOOOOOO?'         :`
 "    :            .oO%OOOOOOOOOOo.OOOOOO.oOOOOOOOOOOOO?         .
+"    Y           'OOOOOOOOOOOOOO: .oOOo. :OOOOOOOOOOO?'         :`
 "    .            oOOP"%OOOOOOOOoOOOOOOO?oOOOOO?OOOO"OOo
 "                 '%o  OOOO"%OOOO%"%OOOOO"OOOOOO"OOO':
 "                      `$"  `OOOO' `O"Y ' `OOOO'  o             .
@@ -120,13 +120,13 @@ colorscheme subtle_dark
    " \)
 " endfunction
 
-
-
 set laststatus=2
 set statusline=
 set statusline=\                                               " Switch sides
 set statusline+=%2*\ %F                                            " Show filename
+" set statusline+=%F
 set statusline+=%1*\ %m                                            " Show file modification indicator
+" set statusline+=\ %m
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
@@ -136,8 +136,7 @@ set statusline+=%1*\ %m                                            " Show file m
 " subtle_dark colors
 hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0 gui=BOLD
 hi User2 guifg=#ffffff guibg=#073642 ctermfg=1 gui=BOLD
-" 
-
+ 
 
 " << NETRW >> 
 
