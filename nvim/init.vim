@@ -55,12 +55,6 @@ Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for 
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
 " Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
-" Deoplete - completion framework
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-" Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-" Plug 'zchee/deoplete-go', { 'do': 'make'}
-
 " NCM2
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
@@ -95,7 +89,6 @@ Plug 'ambv/black'
 
 " colorschemes
 Plug 'kadekillary/subtle_solo'
-Plug 'joshdick/onedark.vim'
 
 call plug#end()
 "
@@ -103,7 +96,7 @@ call plug#end()
 " << COLORSCHEMES >>
 set background=dark
 
-colorscheme onedark
+colorscheme subtle_dark
 "
 
 " << STATUSLINE >>
@@ -161,7 +154,7 @@ let g:indentLine_char = '¦'
 " subtle_light
 " let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-" let g:indentLine_color_gui = '#073642'
+let g:indentLine_color_gui = '#073642'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
 "
