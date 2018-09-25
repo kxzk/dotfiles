@@ -7,7 +7,7 @@
 "    OOOOO                 '"OOOOOOOOOOOOOOOO"`                oOO
 "   oOOOOOba.                .adOOOOOOOOOOba               .adOOOOo.
 "  oOOOOOOOOOOOOOba.    .adOOOOOOOOOO@^OOOOOOOba.     .adOOOOOOOOOOOO
-"  OOOOOOOOOOOOOOOOO.OOOOOOOOOOOOOO"`  '"OOOOOOOOOOOOO.OOOOOOOOOOOOOO 
+"  OOOOOOOOOOOOOOOOO.OOOOOOOOOOOOOO"`  '"OOOOOOOOOOOOO.OOOOOOOOOOOOOO
 "    :            .oO%OOOOOOOOOOo.OOOOOO.oOOOOOOOOOOOO?         .
 "    Y           'OOOOOOOOOOOOOO: .oOOo. :OOOOOOOOOOO?'         :`
 "    .            oOOP"%OOOOOOOOoOOOOOOO?oOOOOO?OOOO"OOo
@@ -17,7 +17,7 @@
 "
 
 
-" << STARTERS >> 
+" << STARTERS >>
 
 filetype indent plugin on
 set encoding=utf-8
@@ -34,10 +34,10 @@ endif
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
 set colorcolumn=80
-" 
+"
 
 
-" << PLUGINS >> 
+" << PLUGINS >>
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -95,6 +95,7 @@ Plug 'ambv/black'
 
 " colorschemes
 Plug 'kadekillary/subtle_solo'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 "
@@ -102,10 +103,10 @@ call plug#end()
 " << COLORSCHEMES >>
 set background=dark
 
-colorscheme subtle_dark
-" 
+colorscheme onedark
+"
 
-" << STATUSLINE >> 
+" << STATUSLINE >>
 
 
 " Function: display errors from Ale in statusline
@@ -122,52 +123,51 @@ colorscheme subtle_dark
 
 set laststatus=2
 set statusline=
-set statusline=\                                               " Switch sides
-set statusline+=%2*\ %F                                            " Show filename
-" set statusline+=%F
-set statusline+=%1*\ %m                                            " Show file modification indicator
-" set statusline+=\ %m
+" set statusline+=%2*\ %F                                            " Show filename
+set statusline+=\ %F
+" set statusline+=%1*\ %m                                            " Show file modification indicator
+set statusline+=\ %m
 " set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
 " set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
 
 " subtle_light colors
-" hi User1 guifg=#839496 guibg=#eee8d5 gui=BOLD ctermfg=0
-" hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=1
+" hi User1 guifg=#839496 guibg=#eee8d5 gui=BOLD ctermfg=1 ctermbg=253 cterm=BOLD
+" hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=16 ctermbg=253
 " subtle_dark colors
-hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0 gui=BOLD
-hi User2 guifg=#ffffff guibg=#073642 ctermfg=1 gui=BOLD
- 
+" hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0 gui=BOLD
+" hi User2 guifg=#ffffff guibg=#073642 ctermfg=1 gui=BOLD
 
-" << NETRW >> 
+
+" << NETRW >>
 
 let g:netrw_liststyle = 3                                        " Tree style
 let g:netrw_banner = 0                                           " No banner
 let g:netrw_browse_split = 1
 let g:netrw_winsize = 20
 let g:netrw_altv = 1
-" 
+"
 
 
-" << NERD COMMENTER >> 
+" << NERD COMMENTER >>
 
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
-"  
+"
 
 
-" << INDENT LINE >> 
+" << INDENT LINE >>
 
 let g:indentLine_char = '¦'
 " subtle_light
 " let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-let g:indentLine_color_gui = '#073642'
+" let g:indentLine_color_gui = '#073642'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
-" 
+"
 
 
-" << GO >> 
+" << GO >>
 "
 
 let g:go_highlight_fields = 1
@@ -190,10 +190,10 @@ augroup GoOpts
     autocmd FileType go nmap <leader>r <Plug>(go-run)
     autocmd FileType go nmap <leader>t <Plug>(go-test)
 augroup END
-" 
+"
 
 
-" << LSP >> 
+" << LSP >>
 
 let g:LanguageClient_autoStart = 1
 
@@ -207,46 +207,16 @@ let g:LanguageClient_serverCommands = {
 
 " noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 " noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
-" 
+"
 
-
-" << DEOPLETE >> 
-
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#skip_chars = ['(', ')', '<', '>']
-
-" call deoplete#custom#option({
-" \ 'auto_complete_delay': 0,
-" \ 'max_list': 50,
-" \ 'min_pattern_length': 2,
-" \ 'refresh_always': v:true,
-" \ })
-
-" let g:deoplete#sources#rust#racer_binary = '/Users/Kade.Killary/.cargo/bin/racer'
-" let g:deoplete#sources#rust#rust_source_path = '/Users/Kade.Killary/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
-
-" let g:deoplete#sources#go#gocode_binary = '/Users/Kade.Killary/gonads/bin/gocode'
-" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
-" " call deoplete#custom#source('jedi', 'debug_enabled', 1)
-" let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3.6'
-" " Increase server time to get completions on large package (i.e. pandas)
-" let g:deoplete#sources#jedi#server_timeout = 50
-
-" nmap <buffer> gd <plug>DeopleteRustGoToDefinitionSplit
-" nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-" 
-
-
-
-" << RUST >> 
+" << RUST >>
 
 let g:rustc_path = '/Users/Kade.Killary/.cargo/bin/rustc'
 let g:rustfmt_autosave = 1
-" 
+"
 
 
-" << IRON.VIM >> 
+" << IRON.VIM >>
 
 nnoremap <leader>ir :IronRepl<CR>
 
@@ -256,15 +226,15 @@ let g:iron_map_defaults = 0
 nmap + <S-v><Plug>(iron-send-motion)
 vmap + <Plug>(iron-send-motion)
 nmap rr <Plug>(iron-repeat-cmd)
-" 
+"
 
 
-" << R >> 
+" << R >>
 
 " Resize R console based on window width
 " augroup R_Resize
-	" autocmd!
-	" autocmd VimResized * let R_rconsole_width = winwidth(0) / 2
+    " autocmd!
+    " autocmd VimResized * let R_rconsole_width = winwidth(0) / 2
 " augroup END
 
 " let g:Rout_more_colors = 1
@@ -275,10 +245,10 @@ nmap rr <Plug>(iron-repeat-cmd)
 " vmap , <Plug>RDSendSelection
 " vmap ,e <Plug>RESendSelection
 " nmap ,p <Plug>RPrintObj
-" 
+"
 
 
-" << PYTHON >> 
+" << PYTHON >>
 
 augroup PythonFMT
     autocmd!
@@ -289,20 +259,21 @@ augroup END
 " let g:python3_host_prog = '/usr/local/bin/python3.7'
 
 " vim-python/python-syntax
-let g:python_highlight_builtins = 1
-let g:python_highlight_builtin_objs = 1
-let g:python_highlight_builtin_funcs = 1
-let g:python_highlight_builtin_funcs_kwarg = 1
-let g:python_highlight_exceptions = 1
-let g:python_highlight_string_formatting = 1
-let g:python_highlight_string_format = 1
-let g:python_highlight_string_templates = 1
-let g:python_highlight_indent_errors = 1
-let g:python_highlight_space_errors = 1
-let g:python_highlight_doctests = 1
-let g:python_highlight_class_vars = 1
-let g:python_highlight_operators = 1
-let g:python_highlight_file_headers_as_comments = 1
+let g:python_highlight_all = 1
+" let g:python_highlight_builtins = 1
+" let g:python_highlight_builtin_objs = 1
+" let g:python_highlight_builtin_funcs = 1
+" let g:python_highlight_builtin_funcs_kwarg = 1
+" let g:python_highlight_exceptions = 1
+" let g:python_highlight_string_formatting = 1
+" let g:python_highlight_string_format = 1
+" let g:python_highlight_string_templates = 1
+" let g:python_highlight_indent_errors = 1
+" let g:python_highlight_space_errors = 1
+" let g:python_highlight_doctests = 1
+" let g:python_highlight_class_vars = 1
+" let g:python_highlight_operators = 1
+" let g:python_highlight_file_headers_as_comments = 1
 
 
 " pymode
@@ -316,20 +287,20 @@ let g:pymode_lint_on_write = 0
 let g:pymode_rope = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_virtualenv = 1
-" 
+"
 
 
-" << NERDTREE >> 
+" << NERDTREE >>
 
 " let g:NerdTreeCascadeSingleChildDir = 0
 let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinPos = 'left'
 let g:NERDTreeShowBookmarks = 1
 map <leader>nt :NERDTreeToggle<CR>
-" 
+"
 
 
-" << FILETYPE >> 
+" << FILETYPE >>
 
 augroup FileOptions
   autocmd!
@@ -343,10 +314,10 @@ augroup FileOptions
   " https://calebthompson.io/crontab-and-vim-sitting-in-a-tree
   autocmd Filetype crontab setlocal nobackup nowritebackup
 augroup END
-" 
+"
 
 
-" << ALE >> 
+" << ALE >>
 
 let g:ale_enabled = 1
 let g:ale_sign_error = '✖︎'
@@ -362,20 +333,20 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 " let g:ale_sign_column_always = 1                " ale enabled
-" 
+"
 
 
-" << FOLDING >> 
+" << FOLDING >>
 
 augroup Folding
   autocmd!
   autocmd BufRead * setlocal foldmethod=marker    " using   fold method
   autocmd BufRead * normal zM
 augroup END
-" 
+"
 
 
-" << BASICS >> 
+" << BASICS >>
 
 if exists('&inccommand')
     set inccommand=split " (neovim) specific, live substitutin preview
@@ -416,7 +387,7 @@ set incsearch           " search characters as enetered
 set hlsearch            " highlight matches
 set foldenable          " enable folding
 set mouse=a             " enable mouse
-set hidden              " buffers exist without windows 
+set hidden              " buffers exist without windows
 set number              " show line number
 set relativenumber      " show relative line number set nobackup            " take care of backup files
 set nobackup
@@ -425,21 +396,21 @@ set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
 " set fillchars+=vert:\   " get rid of vert split '|' character
 " set smartindent       " like autoindent, but smarter about C -> deprecated
-" 
+"
 
 
-" << TEMPLATES >> 
+" << TEMPLATES >>
 
 augroup FileTemplates
     autocmd!
     autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.skeleton
     autocmd BufNewFile *.py 0r ~/.config/nvim/templates/py.skeleton
 augroup END
-" 
+"
 
 
 
-" << KEY MAPPINGS >> 
+" << KEY MAPPINGS >>
 
 " markdown - no conceal
 let g:vim_markdown_conceal = 0
@@ -470,7 +441,7 @@ nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 
 " <Leader>T = Delete all Trailing space in file
-" nnoremap <Leader>T :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
+nnoremap <Leader>t :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
 
 " fast saves
 nnoremap <leader>w :w!<CR>
@@ -480,10 +451,10 @@ nnoremap <leader>q :q!<CR>
 
 " escaping various modes
 if has ('nvim')
-	" get out of terminal with same
-	" window movement key bindings
-	tnoremap jk		<C-\><C-n><CR>
-	tnoremap <C-[>  <C-\><C-n><CR>
+    " get out of terminal with same
+    " window movement key bindings
+    tnoremap jk		<C-\><C-n><CR>
+    tnoremap <C-[>  <C-\><C-n><CR>
     tnoremap <C-W>h <C-\><C-n><C-w>h<CR>
     tnoremap <C-W>j <C-\><C-n><C-w>j<CR>
     tnoremap <C-W>k <C-\><C-n><C-w>k<CR>
