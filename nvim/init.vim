@@ -95,41 +95,16 @@ call plug#end()
 
 " << COLORSCHEMES >>
 set background=dark
-
 colorscheme subtle_dark
 "
 
 " << STATUSLINE >>
 
-
-" Function: display errors from Ale in statusline
-" function! LinterStatus() abort
-   " let l:counts = ale#statusline#Count(bufnr(''))
-   " let l:all_errors = l:counts.error + l:counts.style_error
-   " let l:all_non_errors = l:counts.total - l:all_errors
-   " return l:counts.total == 0 ? '' : printf(
-   " \ 'Warn: %d Err: %d',
-   " \ l:all_non_errors,
-   " \ l:all_errors
-   " \)
-" endfunction
-
 set laststatus=2
 set statusline=
-" set statusline+=%2*\ %F                                            " Show filename
 set statusline+=\ %F
-" set statusline+=%1*\ %m                                            " Show file modification indicator
 set statusline+=\ %m
-" set statusline+=\ %{LinterStatus()}                              " Show ALE lint warnings / errors
-" set statusline+=\ branch(%{gitbranch#name()})\                   " Show Git branch
-
-" subtle_light colors
-" hi User1 guifg=#839496 guibg=#eee8d5 gui=BOLD ctermfg=1 ctermbg=253 cterm=BOLD
-" hi User2 guifg=#268bd2 guibg=#eee8d5 gui=BOLD ctermfg=16 ctermbg=253
-" subtle_dark colors
-" hi User1 guifg=#2aa198 guibg=#073642 ctermfg=0 gui=BOLD
-" hi User2 guifg=#ffffff guibg=#073642 ctermfg=1 gui=BOLD
-
+"
 
 " << NETRW >>
 
@@ -161,7 +136,6 @@ let g:indentLine_color_gui = '#073642'
 
 
 " << GO >>
-"
 
 let g:go_highlight_fields = 1
 let g:go_highlight_structs = 1
@@ -172,7 +146,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
-
 let g:go_fmt_command = 'goimports'
 
 augroup GoOpts
@@ -190,13 +163,10 @@ augroup END
 
 let g:LanguageClient_autoStart = 1
 
-
-
 let g:LanguageClient_serverCommands = {
     \ 'python': ['/usr/local/bin/pyls'],
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'go': ['go-langserver'] }
-
 
 " noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 " noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
@@ -213,33 +183,13 @@ let g:rustfmt_autosave = 1
 
 nnoremap <leader>ir :IronRepl<CR>
 
-let g:iron_repl_open_cmd = 'vsplit'
+" let g:iron_repl_open_cmd = 'vsplit'
 let g:iron_map_defaults = 0
 
 nmap + <S-v><Plug>(iron-send-motion)
 vmap + <Plug>(iron-send-motion)
 nmap rr <Plug>(iron-repeat-cmd)
 "
-
-
-" << R >>
-
-" Resize R console based on window width
-" augroup R_Resize
-    " autocmd!
-    " autocmd VimResized * let R_rconsole_width = winwidth(0) / 2
-" augroup END
-
-" let g:Rout_more_colors = 1
-" let g:rout_follow_colorscheme = 1
-" let g:R_start_libs = 'base, stats, graphics, grDevices, utils, methods, tidyverse'
-
-" nmap , <Plug>RDSendLine
-" vmap , <Plug>RDSendSelection
-" vmap ,e <Plug>RESendSelection
-" nmap ,p <Plug>RPrintObj
-"
-
 
 " << PYTHON >>
 
@@ -252,21 +202,20 @@ augroup END
 " let g:python3_host_prog = '/usr/local/bin/python3.7'
 
 " vim-python/python-syntax
-let g:python_highlight_all = 1
-" let g:python_highlight_builtins = 1
-" let g:python_highlight_builtin_objs = 1
-" let g:python_highlight_builtin_funcs = 1
-" let g:python_highlight_builtin_funcs_kwarg = 1
-" let g:python_highlight_exceptions = 1
-" let g:python_highlight_string_formatting = 1
-" let g:python_highlight_string_format = 1
-" let g:python_highlight_string_templates = 1
-" let g:python_highlight_indent_errors = 1
-" let g:python_highlight_space_errors = 1
-" let g:python_highlight_doctests = 1
-" let g:python_highlight_class_vars = 1
-" let g:python_highlight_operators = 1
-" let g:python_highlight_file_headers_as_comments = 1
+let g:python_highlight_builtins = 1
+let g:python_highlight_builtin_objs = 1
+let g:python_highlight_builtin_funcs = 1
+let g:python_highlight_builtin_funcs_kwarg = 1
+let g:python_highlight_exceptions = 1
+let g:python_highlight_string_formatting = 1
+let g:python_highlight_string_format = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_indent_errors = 1
+let g:python_highlight_space_errors = 1
+let g:python_highlight_doctests = 1
+let g:python_highlight_class_vars = 1
+let g:python_highlight_operators = 1
+let g:python_highlight_file_headers_as_comments = 1
 
 
 " pymode
@@ -353,7 +302,7 @@ set noshowcmd           " don't show command
 " Always go right
 set splitright
 
-set nowrap              " don't wrap lines
+" set nowrap              " don't wrap lines
 set t_Co=256
 set history=100         " lines of history VIM remembers
 set guicursor=a:blinkon0      " disable cursor blink
