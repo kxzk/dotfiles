@@ -1,12 +1,12 @@
 # Print term256 colors
-function colors {
+colors() {
     for i in {0..255}; do
         printf "\x1b[38;5;${i}m${i}"
     done
 }
 
 # For keeping track of notes
-note () {
+note() {
   local notes_dir="$HOME/Desktop/dropbox/notes"
   case "$1" in
     c)
@@ -20,4 +20,29 @@ note () {
       nvim "$1"
       popd
   esac
+}
+
+# Create a new directory and enter it
+mk() {
+  mkdir -p "$@" && cd "$@"
+}
+# Open man page as PDF
+manpdf() {
+ man -t "${1}" | open -f -a /Applications/Preview.app/
+}
+
+# Get random line from file
+raffle() {
+    head -$((${RANDOM} % `wc -l < $1` + 1)) $1 | tail -1
+}
+
+# Set tmux pane title to short hostname on ssh
+ssh() {
+    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
+      tmux rename-window "$(echo $*) [ssh]"
+      command ssh "$@"
+      tmux set-window-option automatic-rename "on" 2>/dev/null
+    else
+      command ssh "$@"
+    fi 
 }

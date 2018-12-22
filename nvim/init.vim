@@ -27,9 +27,9 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
-if has('termguicolors')
-    set termguicolors
-endif
+" if has('termguicolors')
+    " set termguicolors
+" endif
 
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
@@ -183,7 +183,7 @@ let g:rustfmt_autosave = 1
 
 nnoremap <leader>ir :IronRepl<CR>
 
-" let g:iron_repl_open_cmd = 'vsplit'
+let g:iron_repl_open_cmd = 'vsplit'
 let g:iron_map_defaults = 0
 
 nmap + <S-v><Plug>(iron-send-motion)
@@ -251,7 +251,8 @@ augroup FileOptions
   autocmd Filetype python setlocal sts=4 sw=4 wrap
   " autocmd Filetype r setlocal ts=2 sw=2 sts=2 expandtab
   autocmd Filetype r setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.md set wrap
+  autocmd Filetype markdown setlocal spell textwidth=72
+  autocmd Filetype gitcommit setlocal spell textwidth=72
   autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 syntax=javascript
   " https://calebthompson.io/crontab-and-vim-sitting-in-a-tree
   autocmd Filetype crontab setlocal nobackup nowritebackup
@@ -347,6 +348,7 @@ augroup FileTemplates
     autocmd!
     autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.skeleton
     autocmd BufNewFile *.py 0r ~/.config/nvim/templates/py.skeleton
+    autocmd BufNewFile *.sql 0r ~/.config/nvim/templates/sql.skeleton
 augroup END
 "
 
@@ -362,9 +364,6 @@ let g:move_key_modifier = 'C'
 
 " <TAB> to select from popup menu
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
-" Auto-insert shebangs
-inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
 
 " quick subtitutions
 nnoremap <leader>s :%s/

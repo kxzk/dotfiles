@@ -1,0 +1,23 @@
+# python
+alias license="curl https://gist.githubusercontent.com/kadekillary/dbc6007d5e8f7bd6b2a54270b192f547/raw > LICENSE"
+alias setup="curl https://gist.githubusercontent.com/kadekillary/36e51b642ebd72d8344b65e3f4a543c9/raw >> setup.py"
+alias pipupdate="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U"
+alias pipdelete="pip freeze | xargs pip uninstall -y"
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+alias ignore="curl https://gist.githubusercontent.com/kadekillary/410f0480eeefcd529e5fe3d374c0fa70/raw > .gitignore"
+
+# sys
+alias ip="curl ipecho.net/plain ; echo"
+alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
+alias vim="nvim"
+alias c3="ftp crossmedia.c3metrics.com"
+alias top='top -o cpu'
+alias dots="/Users/Kade.Killary/dotfiles"
+
+# go
+alias mygo="cd /Users/Kade.Killary/gonads/src/github.com/kadekillary/"
+
+# dropbox
+alias drop="cd /Users/Kade.Killary/Desktop/dropbox"
+alias pass="cd /Users/Kade.Killary/Desktop/dropbox/passwords"
+alias notes="cd /Users/Kade.Killary/Desktop/dropbox/notes"

@@ -1,0 +1,17 @@
+{{
+    config({
+        "materialized": "",
+        "sort": "",
+        "dist": ""
+    })
+}}
+
+with ___ as (
+
+    select * from {{ ref('') }}
+
+)
+
+select
+
+from
