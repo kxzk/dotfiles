@@ -21,3 +21,6 @@ alias mygo="cd /Users/Kade.Killary/gonads/src/github.com/kadekillary/"
 alias drop="cd /Users/Kade.Killary/Desktop/dropbox"
 alias pass="cd /Users/Kade.Killary/Desktop/dropbox/passwords"
 alias notes="cd /Users/Kade.Killary/Desktop/dropbox/notes"
+
+# jupyterlab
+alias tothelab="ssh -Y -N -L :8888:127.0.0.1:8888 jet@spike"

@@ -27,9 +27,9 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
-" if has('termguicolors')
-    " set termguicolors
-" endif
+if has('termguicolors')
+    set termguicolors
+endif
 
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
@@ -132,6 +132,8 @@ let g:indentLine_char = '¦'
 let g:indentLine_color_gui = '#073642'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
+" subtle_dark
+" let g:indentLine_color_term = 0
 "
 
 
