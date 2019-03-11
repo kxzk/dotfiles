@@ -53,6 +53,7 @@ Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for various languages
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
+Plug 'edkolev/tmuxline.vim'
 " Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
 " NCM2
@@ -88,14 +89,15 @@ Plug 'ambv/black'
 " Plug 'gaalcaras/ncm-R'                                              " R auto-completion
 
 " colorschemes
-Plug 'kadekillary/subtle_solo'
+"Plug 'kadekillary/subtle_solo'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 "
 
 " << COLORSCHEMES >>
-set background=dark
-colorscheme subtle_dark
+set background=light
+colorscheme PaperColor
 "
 
 " << STATUSLINE >>
@@ -127,9 +129,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 let g:indentLine_char = '¦'
 " subtle_light
-" let g:indentLine_color_gui = '#eee8d5'
+let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-let g:indentLine_color_gui = '#073642'
+" let g:indentLine_color_gui = '#4D4D4C'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
 " subtle_dark
