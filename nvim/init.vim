@@ -53,7 +53,6 @@ Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for various languages
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
-Plug 'edkolev/tmuxline.vim'
 " Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
 " NCM2
@@ -62,7 +61,7 @@ Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-jedi'                           " Python
 Plug 'ncm2/ncm2-racer'                          " Rust
 Plug 'ncm2/ncm2-vim'
-Plug 'ncm2/ncm2-go'
+"Plug 'ncm2/ncm2-go'
 
 " LSP
 Plug 'autozimu/LanguageClient-neovim', {
@@ -81,7 +80,7 @@ set completeopt=noinsert,menuone,noselect
 
 " Language Support
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
@@ -90,14 +89,15 @@ Plug 'ambv/black'
 
 " colorschemes
 "Plug 'kadekillary/subtle_solo'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'joshdick/onedark.vim'
+"Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 "
 
 " << COLORSCHEMES >>
-set background=light
-colorscheme PaperColor
+set background=dark
+colorscheme onedark
 "
 
 " << STATUSLINE >>
@@ -129,9 +129,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 let g:indentLine_char = '¦'
 " subtle_light
-let g:indentLine_color_gui = '#eee8d5'
+"let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-" let g:indentLine_color_gui = '#4D4D4C'
+let g:indentLine_color_gui = '#073642'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
 " subtle_dark
