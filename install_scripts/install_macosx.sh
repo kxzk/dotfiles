@@ -11,17 +11,25 @@ brew update
 brew upgrade
 
 # Get rid of terminal login details
-# touch .hushlogin
+touch .hushlogin
 
 # Install brew utilities
-# brew install git
+brew install git
+brew install curl
+brew install python3
+brew install gcc
+brew install ccache
+brew install cmake
+brew install pkg-config
+brew install autoconf
+brew install automake
+brew install inetutils
+
+brew cask install xquartz
+brew cask install java
 # add VisiData
 # add AwsCLI
 
 # Neovim setup
-# brew install neovim
+brew install neovim
 
-# Install R
-brew tap homebrew/core
-brew install Caskroom/cask/xquartz
-brew install r
