@@ -12,15 +12,15 @@ alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
 alias vim="nvim"
 alias c3="ftp crossmedia.c3metrics.com"
 alias top='top -o cpu'
-alias dots="/Users/Kade.Killary/dotfiles"
+alias dots="/Users/kadekillary/dotfiles"
 
 # go
-alias mygo="cd /Users/Kade.Killary/gonads/src/github.com/kadekillary/"
+alias mygo="cd /Users/kadekillary/gonads/src/github.com/kadekillary/"
 
 # dropbox
-alias drop="cd /Users/Kade.Killary/Desktop/dropbox"
-alias pass="cd /Users/Kade.Killary/Desktop/dropbox/passwords"
-alias notes="cd /Users/Kade.Killary/Desktop/dropbox/notes"
+alias drop="cd /Users/kadekillary/Desktop/dropbox"
+alias pass="cd /Users/kadekillary/Desktop/dropbox/passwords"
+alias notes="cd /Users/kadekillary/Desktop/dropbox/notes"
 
 # jupyterlab
 alias tothelab="ssh -Y -N -L :8888:127.0.0.1:8888 jet@spike"
