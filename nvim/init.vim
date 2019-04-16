@@ -53,7 +53,6 @@ Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for various languages
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
-" Plug 'jalvesaq/Nvim-R'                                              " Enhancements for R
 
 " NCM2
 Plug 'roxma/nvim-yarp'
@@ -82,30 +81,30 @@ set completeopt=noinsert,menuone,noselect
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
-Plug 'plasticboy/vim-markdown'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'ambv/black'
 " Plug 'gaalcaras/ncm-R'                                              " R auto-completion
 
 " colorschemes
-"Plug 'kadekillary/subtle_solo'
-Plug 'joshdick/onedark.vim'
-"Plug 'NLKNguyen/papercolor-theme'
+Plug 'kadekillary/subtle_solo'
 
 call plug#end()
 "
 
 " << COLORSCHEMES >>
 set background=dark
-colorscheme onedark
+colorscheme subtle_dark
 "
 
 " << STATUSLINE >>
 
 set laststatus=2
 set statusline=
-set statusline+=\ %F
-set statusline+=\ %m
+set statusline+=%1*\ %F
+set statusline+=%2*\ %m
+
+hi User1 guifg=#FFFFFF guibg=#073642
+hi User2 guifg=#dc322f guibg=#073642
 "
 
 " << NETRW >>
@@ -185,6 +184,8 @@ let g:rustfmt_autosave = 1
 
 " << IRON.VIM >>
 
+luafile $HOME/.config/nvim/plugins.lua
+
 nnoremap <leader>ir :IronRepl<CR>
 
 let g:iron_repl_open_cmd = 'vsplit'
@@ -197,13 +198,17 @@ nmap rr <Plug>(iron-repeat-cmd)
 
 " << PYTHON >>
 
+let g:ncm2_jedi#python_version = 3
+
+let g:black_virtualenv = '/usr/local/bin/'
+
 augroup PythonFMT
     autocmd!
     autocmd BufWritePre *.py execute ':Black'
 augroup END
 
-" let g:python_host_prog = '/usr/local/bin/python2'
-" let g:python3_host_prog = '/usr/local/bin/python3.7'
+let g:python_host_prog = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " vim-python/python-syntax
 let g:python_highlight_builtins = 1
@@ -223,8 +228,8 @@ let g:python_highlight_file_headers_as_comments = 1
 
 
 " pymode
-let g:pymode_python='python3'
-" let g:pymode_paths = ['/usr/local/bin/python3.6']
+let g:pymode_python= 'python3'
+" let g:pymode_paths = ['/usr/local/bin/python3']
 let g:pymode_trim_whitespaces = 1
 let g:pymode_indent = 1                     " PEP-8 compatible indent
 let g:pymode_options_colorcolumn = 0
@@ -266,7 +271,7 @@ augroup END
 
 " << ALE >>
 
-let g:ale_enabled = 1
+let g:ale_enabled = 0
 let g:ale_sign_error = '✖︎'
 highlight ALEErrorSign guifg=red ctermfg=red
 let g:ale_sign_warning = '✔︎'
@@ -275,9 +280,9 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:move_key_modifier = 'N'
-let g:ale_lint_on_insert_leave = 1
+" let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 1
+" let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 " let g:ale_sign_column_always = 1                " ale enabled
 "
@@ -361,7 +366,7 @@ augroup END
 " << KEY MAPPINGS >>
 
 " markdown - no conceal
-let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal = 0
 
 " Vim Move <CTRL> binding
 let g:move_key_modifier = 'C'

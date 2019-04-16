@@ -17,6 +17,8 @@ touch .hushlogin
 brew install git
 brew install curl
 brew install python3
+brew install gcut
+brew install tree
 brew install gcc
 brew install ccache
 brew install cmake
