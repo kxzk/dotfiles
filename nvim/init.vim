@@ -51,8 +51,8 @@ Plug 'matze/vim-move'                                               " Easily mov
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
-Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }           " Repls for various languages
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
+Plug 'jgdavey/tslime.vim'                                           " Slime-like sending for tmux
 
 " NCM2
 Plug 'roxma/nvim-yarp'
@@ -182,19 +182,15 @@ let g:rustfmt_autosave = 1
 "
 
 
-" << IRON.VIM >>
+" << SLIME >>
 
-luafile $HOME/.config/nvim/plugins.lua
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
 
-nnoremap <leader>ir :IronRepl<CR>
-
-let g:iron_repl_open_cmd = 'vsplit'
-let g:iron_map_defaults = 0
-
-nmap + <S-v><Plug>(iron-send-motion)
-vmap + <Plug>(iron-send-motion)
-nmap rr <Plug>(iron-repeat-cmd)
+vmap + <Plug>SendSelectionToTmux
+nmap + <Plug>NormalModeSendToTmux
 "
+
 
 " << PYTHON >>
 

@@ -4,13 +4,17 @@ alias setup="curl https://gist.githubusercontent.com/kadekillary/36e51b642ebd72d
 alias pipupdate="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U"
 alias pipdelete="pip freeze | xargs pip uninstall -y"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+alias ipython=" ipython --profile=bruce_wayne"
 alias ignore="curl https://gist.githubusercontent.com/kadekillary/410f0480eeefcd529e5fe3d374c0fa70/raw > .gitignore"
+alias up="source venv/bin/activate"
+alias virtual="virtualenv venv && source venv/bin/activate && pip install pandas"
 
 # sys
 alias ip="curl ipecho.net/plain ; echo"
 alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
 alias vim="nvim"
 alias c3="ftp crossmedia.c3metrics.com"
+alias artvan="sftp xmediadata@sftp.artvan.com"
 alias top='top -o cpu'
 alias dots="/Users/kadekillary/dotfiles"
 
