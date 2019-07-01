@@ -53,6 +53,8 @@ Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
 Plug 'jgdavey/tslime.vim'                                           " Slime-like sending for tmux
+Plug 'junegunn/goyo.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " NCM2
 Plug 'roxma/nvim-yarp'
@@ -83,28 +85,34 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'ambv/black'
+Plug 'plasticboy/vim-markdown'
+
 " Plug 'gaalcaras/ncm-R'                                              " R auto-completion
 
 " colorschemes
-Plug 'kadekillary/subtle_solo'
+" Plug 'kadekillary/subtle_solo'
+Plug 'drewtempelmeyer/palenight.vim'
+
 
 call plug#end()
 "
 
 " << COLORSCHEMES >>
 set background=dark
-colorscheme subtle_dark
+colorscheme palenight
 "
 
 " << STATUSLINE >>
 
 set laststatus=2
 set statusline=
-set statusline+=%1*\ %F
-set statusline+=%2*\ %m
-
-hi User1 guifg=#FFFFFF guibg=#073642
-hi User2 guifg=#dc322f guibg=#073642
+set statusline+=%F
+set statusline+=%m
+" set statusline+=%1*\ %F
+" set statusline+=%2*\ %m
+ 
+" hi User1 guifg=#FFFFFF guibg=#073642
+" hi User2 guifg=#dc322f guibg=#073642
 "
 
 " << NETRW >>
@@ -362,7 +370,10 @@ augroup END
 " << KEY MAPPINGS >>
 
 " markdown - no conceal
-" let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 0
+
+" markdown - no folding
+let g:vim_markdown_folding_disabled = 1
 
 " Vim Move <CTRL> binding
 let g:move_key_modifier = 'C'
@@ -406,6 +417,13 @@ if has ('nvim')
     tnoremap <C-W>k <C-\><C-n><C-w>k<CR>
     tnoremap <C-W>l <C-\><C-n><C-w>l<CR>
 endif
+
+" Activate Goyo
+nnoremap <leader>g :Goyo<CR>
+
+" Markdown Preview
+nnoremap <leader>m :MarkdownPreview<CR>
+nnoremap <leader>k :MarkdownPreviewStop<CR>
 
 " list all current buffers
 nnoremap <leader>bb :ls<CR>:b<Space>

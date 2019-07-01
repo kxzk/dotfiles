@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
 # maintenance & clean up
-sudo apt-get update
-sudo apt-get dist-upgrade --yes
-sudo apt-get autoremove --yes
+sudo apt update
+sudo apt full-upgrade --yes
+sudo apt autoremove --yes
 
 # basic utils
-sudo apt-get install tree --yes
-sudo apt-get install virtualenv --yes
-sudo apt-get install mailutils --yes
-sudo apt-get install ssmtp --yes
-sudo apt-get install zip --yes
-sudo apt-get install python3-pip --yes
+sudo apt install tree --yes
+sudo apt install virtualenv --yes
+sudo apt install mailutils --yes
+sudo apt install ssmtp --yes
+sudo apt zip --yes
+sudo apt install python3-pip --yes
 
 # sudo vim /etc/ssmtp/ssmtp.conf
 # Uncomment FromLineOverride=YES by deleting the #
@@ -76,7 +76,7 @@ sed -i '/#force_color_prompt/ s/#//' ~/.bashrc
 
 source ~/.bashrc
 
-sudo apt-get update --yes
+sudo apt update --yes
 
 # git
 git config --global user.name "kade killary"
