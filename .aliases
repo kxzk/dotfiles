@@ -6,17 +6,20 @@ alias pipdelete="pip freeze | xargs pip uninstall -y"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 alias ipython=" ipython --profile=bruce_wayne"
 alias ignore="curl https://gist.githubusercontent.com/kadekillary/410f0480eeefcd529e5fe3d374c0fa70/raw > .gitignore"
-alias up="source venv/bin/activate"
-alias virtual="virtualenv venv && source venv/bin/activate && pip install pandas"
+alias up="source env/bin/activate"
+alias down="deactivate"
+alias pandas="virtualenv env && source env/bin/activate && pip install pandas"
 
 # sys
 alias ip="curl ipecho.net/plain ; echo"
 alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
 alias vim="nvim"
+alias v="nvim"
 alias c3="ftp crossmedia.c3metrics.com"
 alias artvan="sftp xmediadata@sftp.artvan.com"
 alias top='top -o cpu'
 alias dots="/Users/kadekillary/dotfiles"
+alias clean="rm -rf ~/.Trash/*; rm -rf ~/Downloads/*"
 
 # go
 alias mygo="cd /Users/kadekillary/gonads/src/github.com/kadekillary/"
@@ -25,6 +28,3 @@ alias mygo="cd /Users/kadekillary/gonads/src/github.com/kadekillary/"
 alias drop="cd /Users/kadekillary/Desktop/dropbox"
 alias pass="cd /Users/kadekillary/Desktop/dropbox/passwords"
 alias notes="cd /Users/kadekillary/Desktop/dropbox/notes"
-
-# jupyterlab
-alias tothelab="ssh -Y -N -L :8888:127.0.0.1:8888 jet@spike"

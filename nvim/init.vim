@@ -138,7 +138,8 @@ let g:indentLine_char = '¦'
 " subtle_light
 "let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
-let g:indentLine_color_gui = '#073642'
+" let g:indentLine_color_gui = '#073642'
+let g:indentLine_color_gui = '#4d597a'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
 " subtle_dark
