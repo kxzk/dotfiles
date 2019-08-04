@@ -16,7 +16,6 @@ alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
 alias vim="nvim"
 alias v="nvim"
 alias c3="ftp crossmedia.c3metrics.com"
-alias artvan="sftp xmediadata@sftp.artvan.com"
 alias top='top -o cpu'
 alias dots="/Users/kadekillary/dotfiles"
 alias clean="rm -rf ~/.Trash/*; rm -rf ~/Downloads/*"
