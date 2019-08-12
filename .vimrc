@@ -46,6 +46,8 @@ let g:netrw_winsize = 20
 let g:netrw_altv = 1
 
 " CORE SETTINGS
+set number
+set relativenumber
 set noruler
 set noshowmode
 set noshowcmd
