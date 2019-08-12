@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+filename="$1"
+
+pandoc "$1" \
+    --toc \
+    -V colorlinks \
+    -V urlcolor=NavyBlue \
+    -V geometry:a4paper \
+    -V geometry:margin=2cm \
+    --highlight-style="kate" \
+    --pdf-engine=xelatex \
+    -o "${filename%.*}".pdf

@@ -27,9 +27,7 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
-if has('termguicolors')
-    set termguicolors
-endif
+set termguicolors
 
 let g:mapleader = "\<Space>"
 set cursorline          " show cursorline
@@ -53,16 +51,14 @@ Plug 'scrooloose/nerdtree'                                          " File tree
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
 Plug 'jgdavey/tslime.vim'                                           " Slime-like sending for tmux
-Plug 'junegunn/goyo.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " NCM2
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-jedi'                           " Python
-Plug 'ncm2/ncm2-racer'                          " Rust
 Plug 'ncm2/ncm2-vim'
-"Plug 'ncm2/ncm2-go'
+Plug 'ncm2/ncm2-go'
+" Plug 'ncm2/ncm2-racer'                          " Rust
 
 " LSP
 Plug 'autozimu/LanguageClient-neovim', {
@@ -80,18 +76,18 @@ augroup END
 set completeopt=noinsert,menuone,noselect
 
 " Language Support
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'ambv/black'
 Plug 'plasticboy/vim-markdown'
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'neovimhaskell/haskell-vim'
 
-" Plug 'gaalcaras/ncm-R'                                              " R auto-completion
 
 " colorschemes
 " Plug 'kadekillary/subtle_solo'
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'tomasr/molokai'
 
 
 call plug#end()
@@ -99,20 +95,18 @@ call plug#end()
 
 " << COLORSCHEMES >>
 set background=dark
-colorscheme palenight
+colorscheme Molokai
 "
 
 " << STATUSLINE >>
 
 set laststatus=2
 set statusline=
-set statusline+=%F
-set statusline+=%m
-" set statusline+=%1*\ %F
-" set statusline+=%2*\ %m
- 
-" hi User1 guifg=#FFFFFF guibg=#073642
-" hi User2 guifg=#dc322f guibg=#073642
+set statusline+=%1*\ %F
+set statusline+=%2*\ %m
+
+hi User1 guifg=#4E4E4E guibg=#262627
+hi User2 guifg=#EA3361 guibg=#262627
 "
 
 " << NETRW >>
@@ -170,6 +164,16 @@ augroup GoOpts
 augroup END
 "
 
+" << HASKELL >>
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+"
+
 
 " << LSP >>
 
@@ -177,7 +181,6 @@ let g:LanguageClient_autoStart = 1
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['/usr/local/bin/pyls'],
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'go': ['go-langserver'] }
 
 " noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
@@ -212,7 +215,7 @@ augroup PythonFMT
     autocmd BufWritePre *.py execute ':Black'
 augroup END
 
-let g:python_host_prog = '/usr/local/bin/python2'
+let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " vim-python/python-syntax
@@ -421,10 +424,6 @@ endif
 
 " Activate Goyo
 nnoremap <leader>g :Goyo<CR>
-
-" Markdown Preview
-nnoremap <leader>m :MarkdownPreview<CR>
-nnoremap <leader>k :MarkdownPreviewStop<CR>
 
 " list all current buffers
 nnoremap <leader>bb :ls<CR>:b<Space>

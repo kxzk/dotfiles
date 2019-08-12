@@ -35,3 +35,9 @@ brew cask install java
 # Neovim setup
 brew install neovim
 
+# Fira Code
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
+
+# Haskell
+brew install haskell-stack
