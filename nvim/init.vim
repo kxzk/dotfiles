@@ -354,7 +354,7 @@ set nobackup
 set nowritebackup         " no backup files
 set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
-" set fillchars+=vert:\   " get rid of vert split '|' character
+set fillchars+=vert:\   " get rid of vert split '|' character
 " set smartindent       " like autoindent, but smarter about C -> deprecated
 "
 
@@ -421,9 +421,6 @@ if has ('nvim')
     tnoremap <C-W>k <C-\><C-n><C-w>k<CR>
     tnoremap <C-W>l <C-\><C-n><C-w>l<CR>
 endif
-
-" Activate Goyo
-nnoremap <leader>g :Goyo<CR>
 
 " list all current buffers
 nnoremap <leader>bb :ls<CR>:b<Space>
