@@ -5,7 +5,6 @@ alias pipupdate="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -
 alias pipdelete="pip freeze | xargs pip uninstall -y"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 alias ipython=" ipython --profile=bruce_wayne"
-alias ignore="curl https://gist.githubusercontent.com/kadekillary/410f0480eeefcd529e5fe3d374c0fa70/raw > .gitignore"
 alias up="source env/bin/activate"
 alias down="deactivate"
 alias pandas="virtualenv env && source env/bin/activate && pip install pandas"
@@ -29,3 +28,9 @@ alias drop="cd /Users/kadekillary/Desktop/dropbox"
 alias pass="cd /Users/kadekillary/Desktop/dropbox/passwords"
 alias notes="cd /Users/kadekillary/Desktop/dropbox/notes"
 alias write="cd /Users/kadekillary/Desktop/dropbox/writing"
+
+# .gitignore for langs
+alias ignorepy="curl http://gitignore.io/api/macos,python,jupyternotebooks > .gitignore"
+alias ignorego="curl http://gitignore.io/api/macos,go > .gitignore"
+alias ignorer="curl http://gitignore.io/api/macos,r > .gitignore"
+alias ignoremac="curl http://gitignore.io/api/macos > .gitignore"

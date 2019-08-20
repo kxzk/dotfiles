@@ -26,6 +26,7 @@ brew install pkg-config
 brew install autoconf
 brew install automake
 brew install inetutils
+brew install bat
 
 brew cask install xquartz
 brew cask install java
