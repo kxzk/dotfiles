@@ -89,6 +89,8 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'kadekillary/subtle_solo'
 Plug 'tomasr/molokai'
 
+let g:rehash256=1
+
 
 call plug#end()
 "
@@ -133,7 +135,7 @@ let g:indentLine_char = '¦'
 "let g:indentLine_color_gui = '#eee8d5'
 " subtle_dark
 " let g:indentLine_color_gui = '#073642'
-let g:indentLine_color_gui = '#4d597a'
+let g:indentLine_color_gui = '#363232'
 " subtle_light - cterm
 " let g:indentLine_color_term = 7
 " subtle_dark

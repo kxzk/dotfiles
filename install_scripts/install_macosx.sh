@@ -28,6 +28,16 @@ brew install automake
 brew install inetutils
 brew install bat
 
+# Install fzf
+# Add options for installing completions + bindings
+brew install fzf
+
+# fzf via Homebrew
+if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+  source /usr/local/opt/fzf/shell/completion.zsh
+fi
+
 brew cask install xquartz
 brew cask install java
 # add VisiData
@@ -39,6 +49,3 @@ brew install neovim
 # Fira Code
 brew tap homebrew/cask-fonts
 brew cask install font-fira-code
-
-# Haskell
-brew install haskell-stack

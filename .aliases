@@ -7,7 +7,7 @@ alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance
 alias ipython=" ipython --profile=bruce_wayne"
 alias up="source env/bin/activate"
 alias down="deactivate"
-alias pandas="virtualenv env && source env/bin/activate && pip install pandas"
+alias libs="virtualenv env && source env/bin/activate && pip install"
 
 # sys
 alias ip="curl ipecho.net/plain ; echo"
