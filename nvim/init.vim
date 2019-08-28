@@ -108,7 +108,7 @@ set statusline+=%1*\ %F
 set statusline+=%2*\ %m
 
 hi User1 guifg=#4E4E4E guibg=#262627
-hi User2 guifg=#EA3361 guibg=#262627
+hi User2 guifg=#98E123 guibg=#262627
 "
 
 " << NETRW >>
@@ -147,7 +147,7 @@ let g:indentLine_color_gui = '#363232'
 
 let g:go_highlight_fields = 1
 let g:go_highlight_structs = 1
-" let g:go_highlight_variable_assignments = 1
+let g:go_highlight_variable_assignments = 1
 let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
