@@ -19,6 +19,7 @@ alias top='top -o cpu'
 alias dots="/Users/kadekillary/dotfiles"
 alias clean="rm -rf ~/.Trash/*; rm -rf ~/Downloads/*"
 alias date="date '+%B %e, %Y'"
+alias weather="curl wttr.in"
 
 # go
 alias gogo="cd /Users/kadekillary/go/src/github.com/kadekillary/"
