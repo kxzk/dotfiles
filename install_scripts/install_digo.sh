@@ -8,10 +8,9 @@ sudo apt autoremove --yes
 # basic utils
 sudo apt install tree --yes
 sudo apt install virtualenv --yes
-sudo apt install mailutils --yes
-sudo apt install ssmtp --yes
+# sudo apt install mailutils --yes
+# sudo apt install ssmtp --yes
 sudo apt zip --yes
-sudo apt install python3-pip --yes
 
 # sudo vim /etc/ssmtp/ssmtp.conf
 # Uncomment FromLineOverride=YES by deleting the #
@@ -82,3 +81,6 @@ sudo apt update --yes
 git config --global user.name "kade killary"
 git config --global user.email "kadekillary@pm.me"
 git config --global core.editor vim
+
+# adjust timezone
+sudo timedatectl set-timezone America/New_York
