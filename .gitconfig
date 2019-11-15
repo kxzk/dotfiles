@@ -13,6 +13,10 @@
 	editor = nvim
 [alias]
     co = checkout
-    br = branch
-    ci = commit
-    st = status
+    cob = checkout -b
+    d = diff
+    b = branch
+    c = commit
+    s = status
+    a = add .
+    undo = reset HEAD~1 --mixed

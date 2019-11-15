@@ -10,6 +10,7 @@ alias down="deactivate"
 alias libs="virtualenv env && source env/bin/activate && pip install"
 
 # sys
+alias g="git"
 alias ip="curl ipecho.net/plain ; echo"
 alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
 alias vim="nvim"
