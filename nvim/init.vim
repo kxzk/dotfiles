@@ -29,7 +29,7 @@ endif
 
 set termguicolors
 
-let g:mapleader = "\<Space>"
+let g:mapleader="\<Space>"
 set cursorline          " show cursorline
 set colorcolumn=80
 "
@@ -46,8 +46,7 @@ Plug 'tpope/vim-surround'                                           " Operations
 Plug 'wellle/targets.vim'                                           " Additional text objects
 Plug 'rizzatti/dash.vim'                                            " Integartion with Dash
 Plug 'matze/vim-move'                                               " Easily move lines
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
-Plug 'scrooloose/nerdtree'                                          " File tree
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
 Plug 'jgdavey/tslime.vim'                                           " Slime-like sending for tmux
@@ -55,10 +54,9 @@ Plug 'jgdavey/tslime.vim'                                           " Slime-like
 " NCM2
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-jedi'                           " Python
+Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
 Plug 'ncm2/ncm2-vim'
-Plug 'ncm2/ncm2-go'
-" Plug 'ncm2/ncm2-racer'                          " Rust
+Plug 'ncm2/ncm2-go', { 'for': 'go' }
 
 " LSP
 Plug 'autozimu/LanguageClient-neovim', {
@@ -81,15 +79,12 @@ Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'ambv/black'
 Plug 'plasticboy/vim-markdown'
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'neovimhaskell/haskell-vim'
 
 
 " colorschemes
-" Plug 'kadekillary/subtle_solo'
-Plug 'tomasr/molokai'
-
-let g:rehash256=1
+" Plug 'tomasr/molokai'
+Plug 'Mcmartelle/vim-monokai-bold'
 
 
 call plug#end()
@@ -97,7 +92,8 @@ call plug#end()
 
 " << COLORSCHEMES >>
 set background=dark
-colorscheme Molokai
+" let g:rehash256=1
+colorscheme monokai-bold
 "
 
 " << STATUSLINE >>
@@ -113,48 +109,47 @@ hi User2 guifg=#98E123 guibg=#262627
 
 " << NETRW >>
 
-let g:netrw_liststyle = 3                                        " Tree style
-let g:netrw_banner = 0                                           " No banner
-let g:netrw_browse_split = 1
-let g:netrw_winsize = 20
-let g:netrw_altv = 1
+let g:netrw_liststyle=3                                        " Tree style
+let g:netrw_banner=0                                           " No banner
+let g:netrw_browse_split=1
+let g:netrw_winsize=20
+let g:netrw_altv=1
 "
 
 
 " << NERD COMMENTER >>
 
-let g:NERDSpaceDelims = 1
-let g:NERDTrimTrailingWhitespace = 1
+let g:NERDSpaceDelims=1
+let g:NERDTrimTrailingWhitespace=1
 "
 
 
 " << INDENT LINE >>
 
-let g:indentLine_char = '¦'
-" subtle_light
-"let g:indentLine_color_gui = '#eee8d5'
+let g:indentLine_char='¦'
 " subtle_dark
-" let g:indentLine_color_gui = '#073642'
-let g:indentLine_color_gui = '#363232'
-" subtle_light - cterm
-" let g:indentLine_color_term = 7
+" let g:indentLine_color_gui='#073642'
+let g:indentLine_color_gui='#363232'
 " subtle_dark
-" let g:indentLine_color_term = 0
+" let g:indentLine_color_term=0
 "
 
 
 " << GO >>
 
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_variable_assignments = 1
-let g:go_highlight_types = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_arguments = 1
-let g:go_highlight_function_calls = 1
-let g:go_fmt_command = 'goimports'
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+let g:go_highlight_fields=1
+let g:go_highlight_structs=1
+let g:go_highlight_variable_assignments=1
+let g:go_highlight_types=1
+let g:go_highlight_extra_types=1
+let g:go_highlight_operators=1
+let g:go_highlight_functions=1
+let g:go_highlight_function_arguments=1
+let g:go_highlight_function_calls=1
+let g:go_fmt_command='goimports'
 
 augroup GoOpts
     autocmd!
@@ -167,23 +162,24 @@ augroup END
 "
 
 " << HASKELL >>
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+let g:haskell_enable_quantification=1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo=1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax=1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms=1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles=1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers=1  " to enable highlighting of `static`
+let g:haskell_backpack=1                " to enable highlighting of backpack keywords
 "
 
 
 " << LSP >>
 
-let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart=1
 
-let g:LanguageClient_serverCommands = {
+let g:LanguageClient_serverCommands={
     \ 'python': ['/usr/local/bin/pyls'],
-    \ 'go': ['go-langserver'] }
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ 'go': ['gopls'] }
 
 " noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 " noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
@@ -191,75 +187,67 @@ let g:LanguageClient_serverCommands = {
 
 " << RUST >>
 
-let g:rustc_path = '/Users/Kade.Killary/.cargo/bin/rustc'
-let g:rustfmt_autosave = 1
+let g:rustc_path='/Users/Kade.Killary/.cargo/bin/rustc'
+let g:rustfmt_autosave=1
 "
 
+" << IRON >>
 
 " << SLIME >>
 
-let g:tslime_always_current_session = 1
-let g:tslime_always_current_window = 1
+let g:tslime_always_current_session=1
+let g:tslime_always_current_window=1
 
-vmap + <Plug>SendSelectionToTmux
+vmap + <Plug>SendSelectionToTmux<CR>
 nmap + <Plug>NormalModeSendToTmux
 "
 
 
 " << PYTHON >>
 
-let g:ncm2_jedi#python_version = 3
+" isort
+let g:vim_isort_map = '<C-i>'
+let g:vim_isort_python_version = 'python3'
 
-let g:black_virtualenv = '/usr/local/bin/'
+let g:ncm2_jedi#python_version=3
+
+let g:black_virtualenv='/usr/local/bin/'
 
 augroup PythonFMT
     autocmd!
     autocmd BufWritePre *.py execute ':Black'
 augroup END
 
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog='/usr/local/bin/python'
+let g:python3_host_prog='/usr/local/bin/python3'
 
 " vim-python/python-syntax
-let g:python_highlight_builtins = 1
-let g:python_highlight_builtin_objs = 1
-let g:python_highlight_builtin_funcs = 1
-let g:python_highlight_builtin_funcs_kwarg = 1
-let g:python_highlight_exceptions = 1
-let g:python_highlight_string_formatting = 1
-let g:python_highlight_string_format = 1
-let g:python_highlight_string_templates = 1
-let g:python_highlight_indent_errors = 1
-let g:python_highlight_space_errors = 1
-let g:python_highlight_doctests = 1
-let g:python_highlight_class_vars = 1
-let g:python_highlight_operators = 1
-let g:python_highlight_file_headers_as_comments = 1
-
+let g:python_highlight_builtins=1
+let g:python_highlight_builtin_objs=1
+let g:python_highlight_builtin_funcs=1
+let g:python_highlight_builtin_funcs_kwarg=1
+let g:python_highlight_exceptions=1
+let g:python_highlight_string_formatting=1
+let g:python_highlight_string_format=1
+let g:python_highlight_string_templates=1
+let g:python_highlight_indent_errors=1
+let g:python_highlight_space_errors=1
+let g:python_highlight_doctests=1
+let g:python_highlight_class_vars=1
+let g:python_highlight_operators=1
+let g:python_highlight_file_headers_as_comments=1
 
 " pymode
 let g:pymode_python= 'python3'
-" let g:pymode_paths = ['/usr/local/bin/python3']
-let g:pymode_trim_whitespaces = 1
-let g:pymode_indent = 1                     " PEP-8 compatible indent
-let g:pymode_options_colorcolumn = 0
-let g:pymode_lint = 0
-let g:pymode_lint_on_write = 0
-let g:pymode_rope = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_virtualenv = 1
+let g:pymode_trim_whitespaces=1
+let g:pymode_indent=1                     " PEP-8 compatible indent
+let g:pymode_options_colorcolumn=0
+let g:pymode_lint=0
+let g:pymode_lint_on_write=1
+let g:pymode_rope=0
+let g:pymode_rope_complete_on_dot=0
+let g:pymode_virtualenv=1
 "
-
-
-" << NERDTREE >>
-
-" let g:NerdTreeCascadeSingleChildDir = 0
-let g:NERDTreeShowLineNumbers = 1
-let g:NERDTreeWinPos = 'left'
-let g:NERDTreeShowBookmarks = 1
-map <leader>nt :NERDTreeToggle<CR>
-"
-
 
 " << FILETYPE >>
 
@@ -281,20 +269,20 @@ augroup END
 
 " << ALE >>
 
-let g:ale_enabled = 0
-let g:ale_sign_error = '✖︎'
+let g:ale_enabled=0
+let g:ale_sign_error='✖︎'
 highlight ALEErrorSign guifg=red ctermfg=red
-let g:ale_sign_warning = '✔︎'
+let g:ale_sign_warning='✔︎'
 highlight ALEWarningSign guifg=grey ctermfg=grey
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:move_key_modifier = 'N'
-" let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-" let g:ale_sign_column_always = 1                " ale enabled
+let g:ale_echo_msg_error_str='E'
+let g:ale_echo_msg_warning_str='W'
+let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
+let g:move_key_modifier='N'
+" let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_text_changed='never'
+" let g:ale_lint_on_enter=1
+let g:ale_lint_on_save=1
+" let g:ale_sign_column_always=1                " ale enabled
 "
 
 
@@ -376,13 +364,13 @@ augroup END
 " << KEY MAPPINGS >>
 
 " markdown - no conceal
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal=0
 
 " markdown - no folding
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled=1
 
 " Vim Move <CTRL> binding
-let g:move_key_modifier = 'C'
+let g:move_key_modifier='C'
 
 " <TAB> to select from popup menu
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -403,7 +391,7 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 
-" <Leader>T = Delete all Trailing space in file
+" <Leader>T=Delete all Trailing space in file
 nnoremap <Leader>t :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
 
 " fast saves

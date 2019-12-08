@@ -20,3 +20,5 @@
     s = status
     a = add .
     undo = reset HEAD~1 --mixed
+[pager]
+	branch = false
