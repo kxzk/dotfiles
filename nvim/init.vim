@@ -65,10 +65,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 " enable ncm2 for all buffers
-augroup NCM
-    autocmd!
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-augroup END
+" augroup NCM
+"    autocmd!
+"    autocmd BufEnter * call ncm2#enable_for_buffer()
+" augroup END
 
 " enable popupopen
 set completeopt=noinsert,menuone,noselect
@@ -77,14 +77,13 @@ set completeopt=noinsert,menuone,noselect
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'ambv/black'
+Plug 'psf/black', { 'tag': '19.10b0' }
 Plug 'plasticboy/vim-markdown'
 " Plug 'neovimhaskell/haskell-vim'
 
 
 " colorschemes
-" Plug 'tomasr/molokai'
-Plug 'Mcmartelle/vim-monokai-bold'
+Plug 'morhetz/gruvbox'
 
 
 call plug#end()
@@ -92,16 +91,17 @@ call plug#end()
 
 " << COLORSCHEMES >>
 set background=dark
-" let g:rehash256=1
-colorscheme monokai-bold
+
+colorscheme gruvbox
 "
+
 
 " << STATUSLINE >>
 
-set laststatus=2
-set statusline=
-set statusline+=%1*\ %F
-set statusline+=%2*\ %m
+set laststatus=0
+" set statusline=
+" set statusline+=%1*\ %F
+" set statusline+=%2*\ %m
 
 hi User1 guifg=#4E4E4E guibg=#262627
 hi User2 guifg=#98E123 guibg=#262627
