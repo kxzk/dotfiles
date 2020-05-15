@@ -65,10 +65,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 " enable ncm2 for all buffers
-" augroup NCM
-"    autocmd!
-"    autocmd BufEnter * call ncm2#enable_for_buffer()
-" augroup END
+augroup NCM
+   autocmd!
+   autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
 
 " enable popupopen
 set completeopt=noinsert,menuone,noselect
@@ -92,16 +92,17 @@ call plug#end()
 " << COLORSCHEMES >>
 set background=dark
 
+let g:gruvbox_bol=1
 colorscheme gruvbox
 "
 
 
 " << STATUSLINE >>
 
-set laststatus=0
-" set statusline=
-" set statusline+=%1*\ %F
-" set statusline+=%2*\ %m
+set laststatus=2
+set statusline=
+set statusline+=%1*\ %F
+set statusline+=%2*\ %m
 
 hi User1 guifg=#4E4E4E guibg=#262627
 hi User2 guifg=#98E123 guibg=#262627
@@ -127,11 +128,7 @@ let g:NERDTrimTrailingWhitespace=1
 " << INDENT LINE >>
 
 let g:indentLine_char='¦'
-" subtle_dark
-" let g:indentLine_color_gui='#073642'
-let g:indentLine_color_gui='#363232'
-" subtle_dark
-" let g:indentLine_color_term=0
+let g:indentLine_color_gui='#4c4c4c'
 "
 
 
