@@ -180,6 +180,9 @@ augroup PythonFMT
     autocmd BufWritePre *.py execute ':Black'
 augroup END
 
+" Sort imports
+command! -nargs=0 Isort :call CocAction('runCommand', 'python.sortImports')
+
 let g:python_host_prog='/usr/local/bin/python'
 let g:python3_host_prog='/usr/local/opt/python@3.8/bin/python3'
 
@@ -312,7 +315,7 @@ set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
 set fillchars+=vert:\   " get rid of vert split '|' character
 set updatetime=300      " Longer updatetime leads to noticeable delays/lag
-set t_ZH=[3m
+set t_ZH=[3m          " For getting italics to work - must be entered with <ctrl-v><esc>
 set t_ZR=[23m
 "
 
