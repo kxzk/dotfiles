@@ -26,7 +26,7 @@ brew install pkg-config
 brew install autoconf
 brew install automake
 brew install inetutils
-brew install bat
+brew install tldr
 
 # Install fzf
 # Add options for installing completions + bindings

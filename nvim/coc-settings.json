@@ -1,0 +1,10 @@
+{
+    "python.venvFolders": ["env",".pyenv",".direnv", "~/.local/share/virtualenvs", "~/.cache/pypoetry/virtualenvs"],
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.sortImports.path": "/usr/local/bin/isort",
+    "pairs.disableLanguages": [
+      "html"
+    ],
+    "clangd.path": "/Users/kadekillary/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
+}

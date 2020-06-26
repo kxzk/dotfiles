@@ -7,22 +7,22 @@ alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance
 alias ipython=" ipython --profile=bruce_wayne"
 alias up="source env/bin/activate"
 alias down="deactivate"
-alias libs="virtualenv env && source env/bin/activate && pip install"
+alias libs="virtualenv env --python=python3.8 && source env/bin/activate && pip3 install"
 
 # sys
+alias todo="${EDITOR:-nvim} ~/todo.md"
 alias ip="curl ipecho.net/plain ; echo"
 alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
 alias vim="nvim"
 alias v="nvim"
 alias c3="ftp crossmedia.c3metrics.com"
+alias boxoffice="ftp ftp.boxofficeessentials.com"
 alias top='top -o cpu'
 alias dots="/Users/kadekillary/dotfiles"
 alias clean="rm -rf ~/.Trash/*; rm -rf ~/Downloads/*"
 alias date="date '+%B %e, %Y'"
 alias weather="curl wttr.in"
-
-# go
-alias gogo="cd /Users/kadekillary/go/src/github.com/kadekillary/"
+alias g="git"
 
 # dropbox
 alias drop="cd /Users/kadekillary/Desktop/dropbox"
@@ -31,7 +31,10 @@ alias notes="cd /Users/kadekillary/Desktop/dropbox/notes"
 alias write="cd /Users/kadekillary/Desktop/dropbox/writing"
 
 # .gitignore for langs
-alias ignorepy="curl http://gitignore.io/api/macos,python,jupyternotebooks > .gitignore"
-alias ignorego="curl http://gitignore.io/api/macos,go > .gitignore"
-alias ignorer="curl http://gitignore.io/api/macos,r > .gitignore"
-alias ignoremac="curl http://gitignore.io/api/macos > .gitignore"
+alias ignorepy="curl https://www.toptal.com/developers/gitignore/api/python,macos > .gitignore"
+alias ignorego="curl https://toptal.com/developers/gitignore/api/macos,go > .gitignore"
+alias ignorer="curl https://toptal.com/developers/gitignore/api/macos,r > .gitignore"
+alias ignoremac="curl https://toptal.com/developers/gitignore/api/macos > .gitignore"
+
+# github
+alias changelog="curl https://gist.githubusercontent.com/kadekillary/720498298f89f2dc0972dafd94945c6d/raw/d6c125ff51cc6db3823862da01395b53a59dccb0/changelog.md > CHANGELOG.md"

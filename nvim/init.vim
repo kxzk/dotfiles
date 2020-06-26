@@ -27,13 +27,14 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
-set termguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 let g:mapleader="\<Space>"
 set cursorline          " show cursorline
 set colorcolumn=80
 "
-
 
 " << PLUGINS >>
 
@@ -41,34 +42,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'w0rp/ale'                                                     " Async Linting
 Plug 'scrooloose/nerdcommenter'                                     " Easy commenting
-Plug 'Raimondi/delimitMate'                                         " Automatic delimiters
 Plug 'tpope/vim-surround'                                           " Operations around surrounding
-Plug 'wellle/targets.vim'                                           " Additional text objects
-Plug 'rizzatti/dash.vim'                                            " Integartion with Dash
-Plug 'matze/vim-move'                                               " Easily move lines
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'Yggdroot/indentline'                                          " Visual indent lines
-Plug 'jgdavey/tslime.vim'                                           " Slime-like sending for tmux
+Plug 'jgdavey/tslime.vim', { 'for': 'python' }                                           " Slime-like sending for tmux
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'html' }
+Plug 'alvan/vim-closetag', { 'for': 'html' }
 
-" NCM2
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
-Plug 'ncm2/ncm2-vim'
-Plug 'ncm2/ncm2-go', { 'for': 'go' }
-
-" LSP
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-" enable ncm2 for all buffers
-augroup NCM
-   autocmd!
-   autocmd BufEnter * call ncm2#enable_for_buffer()
-augroup END
+" COC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " enable popupopen
 set completeopt=noinsert,menuone,noselect
@@ -77,13 +62,13 @@ set completeopt=noinsert,menuone,noselect
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'psf/black', { 'tag': '19.10b0' }
-Plug 'plasticboy/vim-markdown'
+Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Plug 'neovimhaskell/haskell-vim'
 
 
 " colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'kadekillary/subtle_solo'
 
 
 call plug#end()
@@ -92,8 +77,7 @@ call plug#end()
 " << COLORSCHEMES >>
 set background=dark
 
-let g:gruvbox_bol=1
-colorscheme gruvbox
+colorscheme subtle_dark
 "
 
 
@@ -102,10 +86,11 @@ colorscheme gruvbox
 set laststatus=2
 set statusline=
 set statusline+=%1*\ %F
-set statusline+=%2*\ %m
+set statusline+=\ %m
+set statusline+=%=
+set statusline+=%{fugitive#statusline()}
 
-hi User1 guifg=#4E4E4E guibg=#262627
-hi User2 guifg=#98E123 guibg=#262627
+hi User1 guifg=#ffffff guibg=#073642
 "
 
 " << NETRW >>
@@ -128,7 +113,7 @@ let g:NERDTrimTrailingWhitespace=1
 " << INDENT LINE >>
 
 let g:indentLine_char='¦'
-let g:indentLine_color_gui='#4c4c4c'
+let g:indentLine_color_gui='#073642'
 "
 
 
@@ -136,6 +121,8 @@ let g:indentLine_color_gui='#4c4c4c'
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+let g:go_term_enabled=1
 
 let g:go_highlight_fields=1
 let g:go_highlight_structs=1
@@ -168,27 +155,11 @@ let g:haskell_enable_static_pointers=1  " to enable highlighting of `static`
 let g:haskell_backpack=1                " to enable highlighting of backpack keywords
 "
 
-
-" << LSP >>
-
-let g:LanguageClient_autoStart=1
-
-let g:LanguageClient_serverCommands={
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
-    \ 'go': ['gopls'] }
-
-" noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
-" noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
-"
-
 " << RUST >>
 
 let g:rustc_path='/Users/Kade.Killary/.cargo/bin/rustc'
 let g:rustfmt_autosave=1
 "
-
-" << IRON >>
 
 " << SLIME >>
 
@@ -202,12 +173,6 @@ nmap + <Plug>NormalModeSendToTmux
 
 " << PYTHON >>
 
-" isort
-let g:vim_isort_map = '<C-i>'
-let g:vim_isort_python_version = 'python3'
-
-let g:ncm2_jedi#python_version=3
-
 let g:black_virtualenv='/usr/local/bin/'
 
 augroup PythonFMT
@@ -216,7 +181,7 @@ augroup PythonFMT
 augroup END
 
 let g:python_host_prog='/usr/local/bin/python'
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/usr/local/opt/python@3.8/bin/python3'
 
 " vim-python/python-syntax
 let g:python_highlight_builtins=1
@@ -246,6 +211,15 @@ let g:pymode_rope_complete_on_dot=0
 let g:pymode_virtualenv=1
 "
 
+" << NERDTREE >>
+
+let g:NerdTreeCascadeSingleChildDir = 0
+let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeWinPos = 'left'
+let g:NERDTreeShowBookmarks = 1
+map <leader>nt :NERDTreeToggle<CR>
+"
+
 " << FILETYPE >>
 
 augroup FileOptions
@@ -266,7 +240,7 @@ augroup END
 
 " << ALE >>
 
-let g:ale_enabled=0
+let g:ale_enabled=1
 let g:ale_sign_error='✖︎'
 highlight ALEErrorSign guifg=red ctermfg=red
 let g:ale_sign_warning='✔︎'
@@ -275,11 +249,8 @@ let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 let g:move_key_modifier='N'
-" let g:ale_lint_on_insert_leave=1
 let g:ale_lint_on_text_changed='never'
-" let g:ale_lint_on_enter=1
 let g:ale_lint_on_save=1
-" let g:ale_sign_column_always=1                " ale enabled
 "
 
 
@@ -308,11 +279,9 @@ set noshowcmd           " don't show command
 set splitright
 
 " set nowrap              " don't wrap lines
-set t_Co=256
+set spell spelllang=en_us " turn on spell checking
 set history=100         " lines of history VIM remembers
-set guicursor=a:blinkon0      " disable cursor blink
 set autochdir           " change working directory to current file
-set shortmess=a         " get ride of annoying Enter/command prompt
 set cmdheight=1         " height of command bar
 set smarttab
 set tabstop=4           " tab is four spaces
@@ -342,7 +311,9 @@ set nowritebackup         " no backup files
 set noswapfile          " no swap files
 set lazyredraw          " redraw onlw when needed
 set fillchars+=vert:\   " get rid of vert split '|' character
-" set smartindent       " like autoindent, but smarter about C -> deprecated
+set updatetime=300      " Longer updatetime leads to noticeable delays/lag
+set t_ZH=[3m
+set t_ZR=[23m
 "
 
 
@@ -356,6 +327,66 @@ augroup FileTemplates
 augroup END
 "
 
+" << COC >>
+"
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Show commands
+nnoremap <silent><nowait> <leader>c :<C-u>CocList commands<cr>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> H :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+"
 
 
 " << KEY MAPPINGS >>
@@ -366,36 +397,17 @@ let g:vim_markdown_conceal=0
 " markdown - no folding
 let g:vim_markdown_folding_disabled=1
 
-" Vim Move <CTRL> binding
-let g:move_key_modifier='C'
-
-" <TAB> to select from popup menu
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
 " quick subtitutions
 nnoremap <leader>s :%s/
 
-" Echo path current directory
-" nnoremap <silent> <F2> :lchdir %:p:h<CR>:pwd<CR>
-
 " Remove search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
-
-" Dumb - just use 0
-" nnoremap H ^
-
-" Quote words under cursor
-nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
-nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
-
-" <Leader>T=Delete all Trailing space in file
-nnoremap <Leader>t :%s/\s\+$//<CR>:let @/=''<CR>:nohlsearch<CR>
 
 " fast saves
 nnoremap <leader>w :w!<CR>
 
 " exit quickly
-nnoremap <leader>q :q!<CR>
+nnoremap <leader>q :q<CR>
 
 " escaping various modes
 if has ('nvim')
@@ -418,16 +430,6 @@ nnoremap <leader>bn :bn<CR>
 " previous buffer
 nnoremap <leader>bp :bp<CR>
 
-" ignite Dash search
-nmap <silent> <leader>d <Plug>DashSearch<CR>
-
-" cursor only in active window
-"augroup Cursoractive
-    "au!
-    "autocmd VimEnter, WinEnter, BufWinEnter * set local cursorline
-    "autocmd WinLeave * setlocal nocursorline
-"augroup END
-
 " automatic resized windows
 augroup on_vim_resized
     autocmd!
@@ -439,6 +441,9 @@ nnoremap Q !!$SHELL <CR>
 
 " init.vim editing
 map <leader>- :e $HOME/.config/nvim/init.vim<CR>
+
+" todo list editing
+map <leader>t :e $HOME/todo.md<CR>
 
 " source init.vim
 map <silent> <F1> :source $HOME/.config/nvim/init.vim<CR>
