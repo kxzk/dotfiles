@@ -1,34 +1,29 @@
+# random
+alias quote="daily-quote"
+
 # python
-alias license="curl https://gist.githubusercontent.com/kadekillary/dbc6007d5e8f7bd6b2a54270b192f547/raw > LICENSE"
-alias setup="curl https://gist.githubusercontent.com/kadekillary/36e51b642ebd72d8344b65e3f4a543c9/raw >> setup.py"
+alias license="curl https://gist.githubusercontent.com/kkilla/dbc6007d5e8f7bd6b2a54270b192f547/raw > LICENSE"
+alias setup="curl https://gist.githubusercontent.com/kkilla/36e51b642ebd72d8344b65e3f4a543c9/raw >> setup.py"
 alias pipupdate="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U"
-alias pipdelete="pip freeze | xargs pip uninstall -y"
-alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
-alias ipython=" ipython --profile=bruce_wayne"
+alias pipdelete="pip3 freeze | xargs pip3 uninstall -y"
 alias up="source env/bin/activate"
 alias down="deactivate"
-alias libs="virtualenv env --python=python3.8 && source env/bin/activate && pip3 install"
+alias libs="virtualenv env --python=python3 && source env/bin/activate && pip3 install"
+alias p="python3"
+
+# go
+alias g="go run"
 
 # sys
-alias todo="${EDITOR:-nvim} ~/todo.md"
+alias rc="${EDITOR:-vim} ~/.vimrc"
+alias todo="${EDITOR:-vim} ~/todo.md"
 alias ip="curl ipecho.net/plain ; echo"
-alias sshconfig="${EDITOR:-nvim} ~/.ssh/config"
-alias vim="nvim"
-alias v="nvim"
-alias c3="ftp crossmedia.c3metrics.com"
-alias boxoffice="ftp ftp.boxofficeessentials.com"
+alias sshconfig="${EDITOR:-vim} ~/.ssh/config"
 alias top='top -o cpu'
-alias dots="/Users/kadekillary/dotfiles"
+alias dots="/Users/kkilla/dotfiles"
 alias clean="rm -rf ~/.Trash/*; rm -rf ~/Downloads/*"
 alias date="date '+%B %e, %Y'"
 alias weather="curl wttr.in"
-alias g="git"
-
-# dropbox
-alias drop="cd /Users/kadekillary/Desktop/dropbox"
-alias pass="cd /Users/kadekillary/Desktop/dropbox/passwords"
-alias notes="cd /Users/kadekillary/Desktop/dropbox/notes"
-alias write="cd /Users/kadekillary/Desktop/dropbox/writing"
 
 # .gitignore for langs
 alias ignorepy="curl https://www.toptal.com/developers/gitignore/api/python,macos > .gitignore"
@@ -37,4 +32,4 @@ alias ignorer="curl https://toptal.com/developers/gitignore/api/macos,r > .gitig
 alias ignoremac="curl https://toptal.com/developers/gitignore/api/macos > .gitignore"
 
 # github
-alias changelog="curl https://gist.githubusercontent.com/kadekillary/720498298f89f2dc0972dafd94945c6d/raw/d6c125ff51cc6db3823862da01395b53a59dccb0/changelog.md > CHANGELOG.md"
+alias changelog="curl https://gist.githubusercontent.com/kkilla/720498298f89f2dc0972dafd94945c6d/raw/d6c125ff51cc6db3823862da01395b53a59dccb0/changelog.md > CHANGELOG.md"

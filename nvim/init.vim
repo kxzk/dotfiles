@@ -67,10 +67,6 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Plug 'neovimhaskell/haskell-vim'
 
 
-" colorschemes
-Plug 'kadekillary/subtle_solo'
-
-
 call plug#end()
 "
 

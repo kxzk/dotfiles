@@ -10,15 +10,15 @@
 [github]
 	user = kadekillary
 [core]
-	editor = nvim
-[alias]
-    co = checkout
-    cob = checkout -b
-    d = diff
-    b = branch
-    c = commit
-    s = status
-    a = add .
-    undo = reset HEAD~1 --mixed
+	editor = vim
 [pager]
 	branch = false
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+[pull]
+	ff = only

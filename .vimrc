@@ -56,12 +56,13 @@ set completeopt=noinsert,menuone,noselect
 " Language Support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
+Plug 'psf/black', { 'for': 'python' }
 Plug 'rust-lang/rust.vim'
 
 " colors
-" Plug 'kadekillary/subtle_solo'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'kadekillary/skull-vim'
+Plug 'kadekillary/subtle_solo'
 
 call plug#end()
 "
@@ -233,12 +234,8 @@ nnoremap <C-j> :bp<CR>
 
 " << COLORSCHEMES >>
 "
-colorscheme nord
+colorscheme subtle_dark
 set background=dark
-
-" for -> base vim themes
-" hi CursorLine cterm=None
-" hi CursorColumn cterm=None
-" hi CursorLineNr cterm=None guifg=green
-" hi LineNr guifg=white
+" get rid of underscore on LineNr for `subtle_dark`
+hi CursorLineNr cterm=None
 "

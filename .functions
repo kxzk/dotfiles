@@ -1,13 +1,13 @@
 # Print term256 colors
-colors() {
-    for i in {0..255}; do
-        printf "\x1b[38;5;${i}m${i}"
-    done
-}
+# colors() {
+    # for i in {0..255}; do
+        # printf "\x1b[38;5;${i}m${i}"
+    # done
+# }
 
 # For keeping track of notes
 note() {
-  local notes_dir="$HOME/Desktop/dropbox/notes"
+  local notes_dir="$HOME/notes"
   case "$1" in
     c)
       cd "$notes_dir"
@@ -17,18 +17,18 @@ note() {
       ;;
     *)
       pushd "$notes_dir"
-      nvim "$1"
+      vim "$1"
       popd
   esac
 }
 
 # Create a new directory and enter it
 mk() {
-  mkdir -p "$@" && cd "$@"
+    mkdir -p "$@" && cd "$@"
 }
 # Open man page as PDF
 manpdf() {
- man -t "${1}" | open -f -a /Applications/Preview.app/
+    man -t "${1}" | open -f -a /Applications/Preview.app/
 }
 
 # Get random line from file
