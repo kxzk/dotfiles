@@ -44,24 +44,19 @@ let g:mapleader = "\<Space>"
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdcommenter'                                     " Easy commenting
-Plug 'tpope/vim-surround'                                           " Operations around surrounding
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'jgdavey/tslime.vim', { 'for': 'python' }                                           " Slime-like sending for tmux
-Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/devdocs.vim'
 
-" enable popupopen
-set completeopt=noinsert,menuone,noselect
 
 " Language Support
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'psf/black', { 'for': 'python' }
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " colors
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'kadekillary/skull-vim'
 Plug 'kadekillary/subtle_solo'
 
 call plug#end()
@@ -106,8 +101,8 @@ augroup GoOpts
     autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
     autocmd FileType go nmap <leader>i <Plug>(go-imports)
     autocmd FileType go nmap <leader>b <Plug>(go-build)
-    autocmd FileType go nmap <leader>r <Plug>(go-run)
     autocmd FileType go nmap <leader>t <Plug>(go-test)
+    autocmd FileType go nmap <leader>r :terminal go run *.go<CR>
 augroup END
 "
 
@@ -132,12 +127,11 @@ augroup END
 
 " << PYTHON >>
 
-" run currrent python file buffer
-nnoremap <leader>r :w !python3<CR>
-
-augroup PythonFMT
+augroup PyOpts
     autocmd!
-    autocmd BufWritePre *.py execute ':Black'
+    autocmd BufNewFile,BufRead *.py setlocal sts=4 sw=4 wrap
+    autocmd Filetype python nmap <leader>r :terminal python3 %<CR>
+    autocmd BufWritePre *.py silent execute ':Black'
 augroup END
 
 " vim-python/python-syntax
@@ -185,6 +179,7 @@ set scrolloff=3
 set lazyredraw
 set autowrite
 set showmatch
+set completeopt=noinsert,menuone,noselect
 
 " << BACKUPS >>
 set noswapfile
@@ -208,9 +203,6 @@ set smartcase
 
 augroup FileOptions
   autocmd!
-  " indentation
-  " (for comments moving to BOL): https://stackoverflow.com/questions/2063175/comments-go-to-start-of-line-in-the-insert-mode-in-vim
-  autocmd Filetype python setlocal sts=4 sw=4 wrap
   " autocmd Filetype r setlocal ts=2 sw=2 sts=2 expandtab
   autocmd Filetype r setlocal ts=2 sw=2
   autocmd Filetype markdown setlocal spell textwidth=72
@@ -227,10 +219,10 @@ nnoremap <leader>s :%s/
 nnoremap <silent> <BS> :nohlsearch<CR>
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q!<CR>
-nnoremap <leader>bb :ls<CR>:b<Space>
-nnoremap <leader>bc :bd<CR>
-nnoremap <C-k> :bn<CR>
-nnoremap <C-j> :bp<CR>
+nnoremap <leader>v :Vexplore<CR>
+nnoremap <leader>d <Plug>(devdocs-under-cursor)
+nnoremap <leader>x :vertical rightbelow terminal snowsql -f %<CR>
+"
 
 " << COLORSCHEMES >>
 "
