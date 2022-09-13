@@ -13,12 +13,21 @@
 	editor = vim
 [pager]
 	branch = false
+[init]
+    defaultBranch = main
+[fetch]
+    prune = true
+[pull]
+    rebase = true
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
+    ss = status --short
 	unstage = reset HEAD --
+    undo = reset --soft HEAD^
+    amend = commit --amend --no-edit
 	last = log -1 HEAD
-[pull]
-	ff = only
+    rank = shortlog -n -s --no-merges
+    lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"

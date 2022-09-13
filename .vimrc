@@ -34,7 +34,7 @@ if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
 endif
 
 syntax on
-set termguicolors
+" set termguicolors
 set cursorline
 
 let g:mapleader = "\<Space>"
@@ -47,7 +47,7 @@ Plug 'scrooloose/nerdcommenter'                                     " Easy comme
 Plug 'airblade/vim-gitgutter'                                       " Track git changes
 Plug 'jgdavey/tslime.vim', { 'for': 'python' }                                           " Slime-like sending for tmux
 Plug 'tpope/vim-fugitive'
-Plug 'rhysd/devdocs.vim'
+Plug 'rizzatti/dash.vim'
 
 
 " Language Support
@@ -57,7 +57,8 @@ Plug 'psf/black', { 'for': 'python' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " colors
-Plug 'kadekillary/subtle_solo'
+" Plug 'kadekillary/subtle_solo'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 "
@@ -66,10 +67,12 @@ call plug#end()
 
 set laststatus=2
 set statusline=
-set statusline+=%F
+set statusline+=\ %*
+set statusline+=\ %F
 set statusline+=\ %m
 set statusline+=%=
 set statusline+=%{fugitive#statusline()}
+set statusline+=\ %*
 "
 
 " << NERD COMMENTER >>
@@ -102,7 +105,7 @@ augroup GoOpts
     autocmd FileType go nmap <leader>i <Plug>(go-imports)
     autocmd FileType go nmap <leader>b <Plug>(go-build)
     autocmd FileType go nmap <leader>t <Plug>(go-test)
-    autocmd FileType go nmap <leader>r :terminal go run *.go<CR>
+    autocmd FileType go nmap <leader>r :terminal ++shell go run *.go<CR>
 augroup END
 "
 
@@ -121,6 +124,7 @@ augroup FileTemplates
     autocmd!
     autocmd BufNewFile *.py 0r ~/.vim/templates/py.skeleton
     autocmd BufNewFile *.sol 0r ~/.vim/templates/sol.skeleton
+    autocmd BufNewFile *.go 0r ~/.vim/templates/go.skeleton
 augroup END
 "
 
@@ -213,20 +217,27 @@ augroup FileOptions
 augroup END
 "
 
+" << SQL >>
+
+" augroup SQLOpts
+    " autocmd!
+    " autocmd Filetype sql nmap <leader>r :terminal snowsql -f %<CR>
+" augroup END
+"
+
 " << KEY MAPPINGS >>
 
 nnoremap <leader>s :%s/
 nnoremap <silent> <BS> :nohlsearch<CR>
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q!<CR>
-nnoremap <leader>v :Vexplore<CR>
-nnoremap <leader>d <Plug>(devdocs-under-cursor)
-nnoremap <leader>x :vertical rightbelow terminal snowsql -f %<CR>
+nnoremap <leader>0 :Vexplore<CR>
+nmap <silent> <leader>d <Plug>DashSearch<CR>
 "
 
 " << COLORSCHEMES >>
 "
-colorscheme subtle_dark
+colorscheme nord
 set background=dark
 " get rid of underscore on LineNr for `subtle_dark`
 hi CursorLineNr cterm=None
